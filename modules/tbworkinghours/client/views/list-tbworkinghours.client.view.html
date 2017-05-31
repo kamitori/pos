@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Tbworkinghours</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="tbworkinghour in vm.tbworkinghours"
+       ui-sref="tbworkinghours.view({ tbworkinghourId: tbworkinghour._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="tbworkinghour.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="tbworkinghour.user" ng-bind="tbworkinghour.user.displayName"></span>
+        <span ng-if="!tbworkinghour.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="tbworkinghour.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.tbworkinghours.$resolved && !vm.tbworkinghours.length">
+    No Tbworkinghours yet, why don't you <a ui-sref="tbworkinghours.create">create one</a>?
+  </div>
+</section>

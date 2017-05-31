@@ -1,0 +1,151 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <div class="setting_tab col-md-12 col-xs-12 col-sm-12" style="margin-bottom:20px">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a aria-controls="home" role="tab" data-toggle="tab">Account</a>
+      </li>
+      <li role="presentation">
+        <a ui-sref="staffs.list" data-target="staffs.list" aria-controls="home" role="tab" data-toggle="tab">Staff</a>
+      </li>
+      <li role="presentation">
+        <a ui-sref="adminservices.list" data-target="adminservices.list" data-toggle="tab">Service</a>
+      </li>
+      <li role="presentation">
+        <a href="#settings" data-target="#settings" data-toggle="tab">Payment</a>
+      </li>
+      <li role="presentation">
+        <a ui-sref="setups.list" data-target="#setups.list" data-toggle="tab">Notifications</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        <img src="{{vm.current_user.photo !='' ? vm.current_user.photo : '/themes/admin/images/user-avatar.png' }}" id="preview_image" style="max-width: 175px;max-height:120px" onclick="document.getElementById('file').click()"/>
+        <div class="btn btn-info" style="clear:both; visibility: hidden;" id="file" name="file" ngf-select ng-model="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ng-change="vm.changeTest()">Select image</div>
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <input ng-model="vm.current_user.full_name" ng-change="vm.quickupdate('full_name')" type="text" class="form-control fake_text">
+        </div>
+        <div class="col-md-12 cleafix"> &nbsp;</div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <textarea ng-change="vm.quickupdate('address')" ng-model="vm.current_user.address" type="text" class="form-control fake_text" style="margin-bottom: 10px;"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Store Manager
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <select ng-model="vm.current_user.our_rep_id" id="our_rep_id" ng-change="vm.quickupdate('our_rep_id')" class="form-control">
+          <option value="0">---select---</option>
+          <option ng-repeat="staff in vm.listStaffs" value="{{staff._id}}">{{staff.full_name}}</option>
+        </select>        
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Account ID
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <input ng-model="vm.current_user.no" ng-change="vm.quickupdate('no')" type="text" class="form-control fake_text">
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Mobile
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <input ng-model="vm.current_user.mobile" ng-change="vm.quickupdate('mobile')" type="text" class="form-control fake_text">
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Email
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <input ng-model="vm.current_user.email" ng-change="vm.quickupdate('email')" type="text" class="form-control fake_text">
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        CC Emails To
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <input ng-model="vm.current_user.emailccto" ng-change="vm.quickupdate('emailccto')" type="text" class="form-control fake_text">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12 bordertop">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-sm-4 col-xs-6  text-right">
+        Online Order Page
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <input ng-model="vm.current_user.staff_booking_page" ng-change="vm.quickupdate('staff_booking_page')" type="text" class="form-control fake_text">
+      </div>
+    </div>   
+  </div>
+   <div class="col-md-12 col-sm-12 col-xs-12 bordertop">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Week Start Day
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <select ng-model="vm.current_user.week_start_day" ng-change="vm.quickupdate('week_start_day')" type="text" class="form-control fake_text">
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thurday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturdat</option>
+          <option value="sunday">Sunday</option>
+        </select>
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Calendar Start Hour
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <select class="form-control cursor-pointer" ng-model="vm.current_user.calendar_start_hour" ng-change="vm.quickupdate('calendar_start_hour')">
+          <option ng-repeat="current in vm.draw_start_hours" value="{{current}}">{{current}}</option>
+        </select>
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Calendar End Hour
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <select class="form-control cursor-pointer" ng-model="vm.current_user.calendar_end_hour" ng-change="vm.quickupdate('calendar_end_hour')">
+          <option ng-repeat="current in vm.draw_start_hours" value="{{current}}">{{current}}</option>
+        </select>
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-4 col-xs-6 text-right">
+        Preferred Language
+      </div>
+      <div class="col-md-10 col-sm-4 col-xs-6">
+        <select class="form-control fake_text" ng-change="vm.quickupdate('preferred_language')" ng-model="vm.current_user.preferred_language">
+          <option value='english'>English</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .bordertop{
+    border-top: 1px dotted gray;
+    padding:10px;
+    margin-top: 10px;
+  }
+  .cleafix{
+    clear:both;
+  }
+  inpu2t.fake_text {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-family: inherit;
+      font-size: inherit;
+  }
+</style>

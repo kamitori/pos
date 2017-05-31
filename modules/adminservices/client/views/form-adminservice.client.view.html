@@ -1,0 +1,127 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <section>
+  <div class="page-header col-md-12 col-xs-12 col-sm-12">    
+      <h1>
+        <div class="col-md-8 col-xs-6 col-sm-6">
+          {{vm.adminservice._id ? 'Edit Service' : 'New Service'}}
+        </div>
+        <div class="col-md-4 col-xs-6 col-sm-6 text-right">
+            <a class="btn btn-warning" ui-sref="adminservices.list"><i class="glyphicon glyphicon-back"> Back </i></a>
+        </div>
+      </h1>    
+  </div>
+
+  <div class="col-md-12" style="">
+    <form name="vm.form.adminserviceForm" class="form-horizontal" ng-submit="vm.save(vm.form.adminserviceForm.$valid)" novalidate enctype="multipart/form-data" method="post">
+      <fieldset>
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+          <div class="col-md-2 col-sm-6 col-xs-6">
+            <img id="preview_image" class="col-md-12 col-sm-12 col-xs-12" style="max-width:100px;height:50px;margin-bottom: 10px;padding:0" src="{{vm.adminservice._id ? vm.adminservice.imgthumb : '/themes/admin/images/no-image-box.png' }}" onclick="document.getElementById('file').click()" />            
+            <div class="btn btn-info" style="clear:both; visibility: hidden;" id="file" name="file" ngf-select ng-model="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="preview_image_upload(this)">
+              Select image
+            </div>
+          </div>
+          <div class="col-md-10 col-sm-6 col-xs-6">            
+            <div class="form-group" show-errors>              
+              <input name="name" type="text" ng-model="vm.adminservice.name" id="name" class="form-control" placeholder="Name" required style="margin-bottom: 15px">
+              <div ng-messages="vm.form.adminserviceForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Adminservice name is required.</p>
+              </div>              
+              <input name="description" type="text" ng-model="vm.adminservice.description" id="description" class="form-control" placeholder="Description" />
+            </div>
+            
+
+          </div>          
+
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+          <div class="col-md-2 col-sm-6 col-xs-6">
+            Category: 
+          </div>
+          <div class="col-md-10 col-sm-6 col-xs-6">            
+            <div class="form-group">              
+              <!-- <select class="form-control" ng-options="item as item._val for item in vm.draw_cate_type track by item._id" ng-model="vm.adminservice.cate_type" ></select> -->
+              <select class="form-control" ng-model="vm.adminservice.cate_type">
+                <option value="checf_cook" ng-if="vm.adminservice.cate_type == 'checf_cook'" selected >Kitchen - ChefCook</option>
+                <option value="checf_cook" ng-if="vm.adminservice.cate_type != 'checf_cook'" >Kitchen - ChefCook</option>
+                <option value="dish_washer" ng-if="vm.adminservice.cate_type == 'dish_washer'" selected>Kitchen - Dish Washer</option>
+                <option value="dish_washer" ng-if="vm.adminservice.cate_type != 'dish_washer'">Kitchen - Dish Washer</option>
+              </select>              
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+          <div class="col-md-2 col-sm-4 col-xs-6">
+            <label class="control-label" for="sprice">Service Cost($)</label>            
+          </div>
+
+          <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+            <input name="sprice" type="number" ng-model="vm.adminservice.sprice" id="sprice" class="form-control col-md-10 col-xs-9 col-sm-9" placeholder="$0.0" min="0" max="99999999" value="{{vm.adminservice.sprice | numberFixedLen}}" required>
+          </div>
+
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+          <div class="col-md-2 col-sm-4 col-xs-6 ">
+            <label class="control-label" for="sduration">Service Time(mins)</label>            
+          </div>
+
+          <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+             <input name="sduration" type="number" ng-model="vm.adminservice.sduration" id="sduration" class="form-control" min="0" max="864000" class="form-control" placeholder="60 mins" value="{{vm.adminservice.sduration | numberFixedLen}}" required>
+          </div>
+
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+          <div class="col-md-2 col-sm-4 col-xs-6">
+            <label class="control-label" for="extratime">Extra Time(mins)</label>            
+          </div>
+
+          <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+             <input name="sduration" type="number" ng-model="vm.adminservice.extratime" id="extratime" class="form-control" min="0" max="864000" class="form-control" placeholder="15 mins"  required>
+          </div>
+
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+          <div class="col-md-2 col-sm-4 col-xs-6">
+            <label class="control-label" for="stype">Color Identify</label>
+          </div>
+
+          <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+           <color-picker
+              ng-model="vm.adminservice.stype"
+              options="options"
+              api="api"
+              event-api="eventApi"
+          ></color-picker>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+          <button type="submit" class="btn btn-primary">{{vm.adminservice._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
+</div>
+<style type="text/css">
+  .nopadding{
+    padding:0;
+  }
+  .bot20px{
+    margin-bottom: 20px;
+  }
+  .color-picker-input-swatch{
+    /*visibility: hidden;*/
+  }
+</style>

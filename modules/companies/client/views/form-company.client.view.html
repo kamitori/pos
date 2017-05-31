@@ -1,0 +1,45 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.company._id ? 'Edit Company' : 'New Company'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.companyForm" class="form-horizontal" ng-submit="vm.save(vm.form.companyForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Your Business</label>
+          <div class="col-md-9">
+            <input name="name" type="text" ng-model="vm.company.name" id="name" class="form-control" placeholder="Business Name" required>
+          </div>
+          <div ng-messages="vm.form.companyForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Business name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Industry</label>
+          <div class="col-md-9">
+            <select name="type" type="text" ng-model="vm.company.type" id="type" class="form-control" placeholder="Business Name" required  ng-options="type as type for type in vm.companyType">
+            </select>
+          </div>
+          <div ng-messages="vm.form.companyForm.type.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Industry is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Phone No</label>
+          <div class="col-md-9">
+            <input name="Phone" type="text" ng-model="vm.company.Phone" id="Phone" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div ng-messages="vm.form.companyForm.Phone.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Phone Number is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.company._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

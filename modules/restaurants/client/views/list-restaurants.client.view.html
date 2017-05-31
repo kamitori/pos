@@ -1,0 +1,30 @@
+<section class="restaurantpage">
+  <div class="col-md-8 col-md-offset-2 boxrestaurant">
+    <div class="col-md-6" ng-repeat="restaurant in vm.restaurants" ng-click="vm.setCompany(restaurant)">
+      <div class="block-location">
+        <h3 class="text-center lead">
+          <i class="fa fa-map-marker"></i> &nbsp;{{restaurant.name}}
+        </h3>
+        <p class="lead">{{restaurant.our_csr}}&nbsp;</p>
+        <p>{{restaurant.phone}}&nbsp;</p>
+        <p>{{restaurant.email}}&nbsp;</p>
+        <p>8AM - 9PM</p>
+        <p class="green lead"><i class="fa fa-check-circle"></i> OPEN</p>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="col-md-3 bg-yellow text-center">
+        <img src="/themes/client/images/icons-47.svg" alt="" height="80">
+      </div>
+      <div class="col-md-2 bg-orange text-center">
+        <img src="/themes/client/images/icons-46.svg" alt="" height="80">
+      </div>
+      <div class="col-md-2 bg-red text-center">
+        <img src="/themes/client/images/icons-45.svg" alt="" height="80">
+      </div>
+      <div class="col-md-5 bg-blue text-center height80">
+        <b class="lead">Account ID: #{{vm.user.no}}</b>
+      </div>
+    </div>
+  </div>
+</section>

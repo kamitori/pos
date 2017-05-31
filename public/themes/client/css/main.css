@@ -1,0 +1,283 @@
+.wapper{
+    margin: 0;
+    width: 100%;
+}
+.fullbox{
+    background: white;
+    display: table;
+    float: left;
+    height: 100vh;
+    margin:0;
+    padding: 0;
+    width: 100%;
+}
+.left_cont{
+    background: black;
+    color: white;
+    float: left;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    min-height: 750px;
+    padding: 0;
+    position: absolute;
+    position: fixed;
+    top: 0;
+}
+.right_cont{
+    float: left;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.navlogo{
+    text-align: center;
+}
+.navlogo img{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 70%;
+}
+.navlogo a{
+    padding-left: 0!important;
+}
+.navlogo a:hover, .navlogo a:focus{
+    background: transparent!important;
+}
+
+.navleft li a{
+    color: #f5f5f5;
+    font-family: 'Avenir35Light', Verdana;
+    font-size: 16px;
+    padding-left: 48px;
+}
+.navleft li .active{
+    color: black;
+    background-color:#eeeeee;
+}
+.navleft li a:hover, .navleft li a:focus{
+    color: black;
+    background-color:#eeeeee;
+}
+
+
+/*Menu top*/
+.mainmenutop{
+    background-color: #0586ca;
+    background-image: none;
+    /*background-image: -webkit-linear-gradient(top, #3c3c3c 0%, #222 100%);
+    background-image: -o-linear-gradient(top, #3c3c3c 0%, #222 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3c3c3c), to(#222));
+    background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+    background-repeat: repeat-x;*/
+    border:none;
+    border-radius: 0;
+    color: white;
+    margin-bottom: 0;
+}
+.mainmenutop a, .mainmenutop .navbar-brand, .mainmenutop .navbar{
+    color: white;
+}
+.iconnav span{
+    font-size: 23px;
+    line-height: 14px!important;
+    color: white;
+}
+.maintitle{
+    font-family: 'Avenir65Medium', Verdana;
+    text-transform: uppercase;
+}
+.mainmenutop .logout, .mainmenutop .login{
+    margin-right: 10px;
+}
+.userstaff{
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 7px !important;
+    text-align: right;
+}
+.department{
+    clear: both;
+}
+@keyframes leftoff{
+    from {width: 235px;}
+    to {width: 0px;}
+}
+@keyframes lefton{
+    from {width: 0px;}
+    to {width: 235px;}
+}
+@keyframes rightoff{
+    from {margin-left: 0px;}
+    to {margin-left: 235px;}
+}
+@keyframes righton{
+    from {margin-left: 235px;}
+    to {margin-left: 0px;}
+}
+.left_navoff{
+    display: none;
+    width: 0px;
+    -webkit-animation-name: leftoff; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+    animation-name: leftoff;
+    animation-duration: 0.2s;
+    margin-left: 0px;
+}
+.right_navon{
+    -webkit-animation-name: righton; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.2s; /* Safari 4.0 - 8.0 */
+    animation-name: righton;
+    animation-duration: 0.2s;
+}
+.left_navon{
+    display: block;
+    width: 235px;
+    -webkit-animation-name: lefton; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-name: lefton;
+    animation-duration: 0.5s;
+}
+.right_navoff{
+    -webkit-animation-name: rightoff; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+    animation-name: rightoff;
+    animation-duration: 0.5s;
+    margin-left: 235px;
+}
+
+.tablenumber{
+    margin: 0;
+    padding: 0;
+    width: 40%;
+}
+.rightmainstation{
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+.bttopright{
+    padding-left: 5%!important;
+}
+.maincontrol{
+    padding-left: 5%!important;
+}
+.nopadding{
+    padding-left: 0;
+    padding-right: 0;
+}
+.nomargin{
+    margin-left: 0;
+    margin-right: 0;
+}
+.posbutton{
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    cursor: pointer;
+    border-radius: 3px;
+    display: inline-block;
+    float: left;
+    font-family: 'Avenir65Medium', Verdana;
+    font-size: 20px;
+    line-height: 15px;
+    margin: 0 2% 4% 2%;
+    text-align: center;
+    vertical-align: middle;
+}
+.posheader{
+    float: left;
+    font-family: 'Avenir65Medium', Verdana;
+    font-size: 20px;
+    line-height: 10px;
+    margin: 0 2% 0 2%;
+    text-align: center;
+    text-transform: uppercase;
+}
+.textblue{
+    color: #066ba0;
+    font-weight: bold;
+}
+.textbrow{
+    color: #633b11;
+    font-weight: bold;
+}
+.btn-brow{
+    background: #633b11;
+    color: white;
+}
+.btn-black{
+    background: #000;
+    color: white;
+}
+.btn-yellow{
+    background: #e2a924;
+    color: white;
+}
+.seated{
+    line-height: 15px;
+    padding-top: 10px!important;
+}
+.seated .dolar{
+    font-family: Arial;
+    font-size: 11px;
+    line-height: 8px;
+}
+.seated .timer{
+    font-family: Arial;
+    font-size: 11px;
+    line-height: 8px;
+}
+.bt1{
+    padding: 20px 0 20px 0;
+    width: 96%;
+}
+.bt2{
+    padding: 20px 0 20px 0;
+    width: 46%;
+}
+.bt4{
+    font-size: 25px;
+    font-weight: bold;
+    height: 66px;
+    overflow: hidden;
+    padding: 25px 0 25px 0;
+    vertical-align: middle;
+    width: 21%; 
+}
+.changetablebox{
+    bottom: 0;
+    max-width:50%;
+    padding: 0 10px 10px 20px;
+    position: fixed;
+    right: 0;
+
+    /*width: 550px;*/
+}
+.changeform{
+    font-size: 22px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.changeform h3{
+    text-transform: uppercase;
+}
+.colorlist li{
+    float: right;
+    list-style-type: none;
+    width: 100px;
+}
+.colorlist .coloricon{
+    height: 10px;
+    padding: 0 2px 0 2px;
+    background: red;
+    color: red;
+}
+.stationtitle{
+    margin-left: 10%;
+    text-align: center;
+    width: 50%;
+}
+.stationtitle span{
+    width: 100%;
+}

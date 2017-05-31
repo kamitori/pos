@@ -1,0 +1,20 @@
+<div class="row clearfix padding15" ng-repeat="day in vm.workingHour">
+  <div class="col-md-2 ufc">
+    {{day.day}}
+  </div>
+  <div class="col-md-2" >
+    <toggle ng:click="vm.update_workinghours($index)" class="toggle" ng-model="day.active" ng-change="changed()" onstyle="btn-info"></toggle>          
+  </div>
+  <div class="col-md-1" >
+    From
+  </div>
+  <div class="col-md-3" ng-init="working_from_ = 'working_from_' + day.day">
+    <select class="form-control" id="working_from_{{day.day}}" ng-options="item as item._val for item in vm.draw_list_working_hours track by item._id" ng-model="working_from_" ng-init="working_from_= vm.get_index_working_hours(day.start)" ng-change="vm.change_working_hours($index)"></select>
+  </div>
+  <div class="col-md-1" >
+    To
+  </div>
+  <div class="col-md-3" ng-init="working_to_ = 'working_to_' + day.day">
+    <select class="form-control" id="working_to_{{day.day}}" ng-options="item as item._val for item in vm.draw_list_working_hours track by item._id" ng-model="working_to_" ng-init="working_to_= vm.get_index_working_hours(day.end,18)" ng-change="vm.change_working_hours($index,1)"></select>
+  </div>
+</div>

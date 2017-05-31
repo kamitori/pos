@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Selectlists</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="selectlist in vm.selectlists"
+       ui-sref="selectlists.view({ selectlistId: selectlist._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="selectlist.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="selectlist.user" ng-bind="selectlist.user.displayName"></span>
+        <span ng-if="!selectlist.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="selectlist.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.selectlists.$resolved && !vm.selectlists.length">
+    No Selectlists yet, why don't you <a ui-sref="selectlists.create">create one</a>?
+  </div>
+</section>

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default mainmenutop">
+    <div class="navbar-header">
+        <a class="navbar-brand iconnav" href="#" oleft-navi>
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-header" ng-if="vm.backlink!=null">
+        <span class="navbar-brand maintitle">
+            <a href="{{vm.backlink}}">
+                <i class="fa fa-chevron-left"></i> Back
+            </a>
+        </span>
+    </div>
+    <div class="navbar-header {{vm.backlink!=null ? 'stationtitle':''}}">
+        <span class="navbar-brand maintitle" href="#">
+            {{vm.title? vm.title : main.title}}
+        </span>
+    </div>
+    <div class="nav navbar-nav navbar-right logout" ng-if="vm.search!=1">
+        <span class="navbar-brand userstaff">
+            <a href="#">Tester</a><br>
+            <span id="department">Staff</span>
+        </span>
+        <a class="navbar-brand iconnav" href="/api/auth/signout" target="_self">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="nav navbar-nav navbar-right login" style="display: none;">
+        <a class="navbar-brand iconnav" href="#">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+        </a>
+    </div>
+    
+    <div class="nav navbar-nav navbar-right login" ng-if="vm.search==1">
+        <a class="navbar-brand iconnav" href="#">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="nav navbar-nav navbar-right login" ng-if="vm.pause==1">
+        <a class="navbar-brand iconnav" href="#">
+            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+        </a>
+    </div>
+    
+</nav>

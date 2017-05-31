@@ -1,0 +1,93 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <div class="setting_tab col-md-12 col-xs-12 col-sm-12" style="margin-bottom:20px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+      <a ui-sref="settingsaccounts.list" data-target="settingsaccounts.list" data-toggle="tab">Account</a>
+    </li>
+    <li role="presentation">
+      <a ui-sref="staffs.list" data-target="staffs.list" data-toggle="tab">Staff</a>
+    </li>
+    <li role="presentation" class="active">
+      <a data-toggle="tab">Service</a>
+    </li>
+    <li role="presentation">
+      <a href="#settings" data-target="#settings" data-toggle="tab">Payment</a>
+    </li>
+    <li role="presentation">
+      <a ui-sref="setups.list" data-target="#setups.list" data-toggle="tab">Notifications</a>
+    </li>
+  </ul>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4">
+  <h3>Categories</h3>
+  <ul class="list-group">
+    <li class="list-group-item" ng-click='vm.click_cate("")'>All Service</li>
+    <li class="list-group-item no_border_padding" ng-click='vm.click_cate("checf_cook")'>Kitchen - ChefCook</li>
+    <li class="list-group-item no_border_padding" ng-click='vm.click_cate("dish_washer")'>Kitchen - Dish Washer</li>
+  </ul>
+</div>
+<section class="col-md-8 col-sm-8 col-xs-8">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <h1 class="class col-md-8 col-sm-6 col-xs-6 ">Services</h1>
+    <h3 class="class col-md-4 col-sm-6 col-xs-6 text-right">
+      <a class="btn btn-warning" ui-sref="adminservices.create"><i class="glyphicon glyphicon-plus"> Create </i></a>
+    </h3>
+  </div>  
+  <div class="list-group clearfix" style="clear:both">
+    <div ng-repeat="adminservice in vm.adminservices | startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize" class="list-group-item col-md-12 col-xs-12 col-sm-12">
+       <a class="col-md-10 col-sm-11 col-xs-11" ui-sref="adminservices.edit({ adminserviceId: adminservice._id })" style="color:black" id="{{adminservice._id}}">
+        <small class="list-group-item-text col-md-offset-2 col-sm-offset-3 col-xs-offset-3 col-md-12 col-xs-12 col-sm-12">
+          Posted on
+          <span ng-bind="adminservice.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="adminservice.user" ng-bind="adminservice.user.displayName"></span>
+          <span ng-if="!adminservice.user" class="btn btn-primary btn-xs">Deleted User</span>
+        </small>      
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <img src="{{adminservice.imgthumb!='' ? adminservice.imgthumb : '#'}}" style="max-width:100px;width:75px;" />
+        </div>
+        <div class="col-md-5 col-sm-4 col-xs-4">
+          <strong><p ng-bind="adminservice.name"></p></strong>
+          <small ng-bind="adminservice.description"></small>
+        </div>        
+        <div class="col-md-3 col-sm-2 col-xs-2 text-right">
+          {{adminservice.cate_type!='checf_cook'? 'Kitchen - ChefCook' : 'Kitchen - Dish Washer' }}         
+        </div>
+       </a>
+        <div class="col-md-2 col-sm-2 col-xs-2 text-right" style="padding:0" id="div{{adminservice._id}}">
+          <p ng-init="_color = vm.returnColor(adminservice.stype)" class="col-md-1 col-sm-3 col-xs-3" style="width:20px !important;height:55px;background-color: {{_color}}">&nbsp;</p>
+          <div class="col-md-7 col-sm-6 col-xs-6" style="padding-top:15px">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="vm.removeById({adminservice })">
+              <i class="glyphicon glyphicon-trash"></i>
+            </button>
+          </div>          
+        </div>
+    </div>
+    <div class="col-md-12 col-xs-12 col-sm-12 text-center" style="margin: 10px" ng-if="vm.adminservices.$resolved && vm.adminservices.length">    
+       <button class="btn btn-primary" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage = vm.currentPage-1">
+            Previous
+        </button>
+
+        <input min="1" id="run_link" ng-change="vm.changeData()" max="{{vm.numberOfPages()}}" only-digits ng-model="run_link" class="form-control" type="number" ng-pattern="/^[0-9]*$/" style="width:100px;display:inline-block!important" value="{{vm.currentPage+1}}" />
+        
+        <button class="btn btn-primary" ng-disabled="vm.currentPage >= vm.adminservices.length/vm.pageSize - 1" ng-click="vm.currentPage = vm.currentPage + 1">
+            Next
+        </button>
+    </div>
+  </div>
+  <div class="alert alert-warning text-center " ng-if="vm.adminservices.$resolved && !vm.adminservices.length">
+    <div class="horizontal-scroll">
+        No record found...
+      </div>
+
+  </div>
+</section>
+<style type="text/css">
+  .no_border_padding {
+    border: none !important;
+    padding-left:5%;
+  }
+</style>
+
+</div>

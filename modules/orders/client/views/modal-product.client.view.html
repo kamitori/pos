@@ -1,0 +1,20 @@
+<div class="modal fade modal-product">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #0586ca">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">{{product.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 product-content" ng-include="'modules/orders/client/views/product-content.client.view.html'">
+            
+          </div>
+        </div>
+      </div>
+      <!-- <div style="clear:both">&nbsp;</div> -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

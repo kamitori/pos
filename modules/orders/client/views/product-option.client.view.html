@@ -1,0 +1,38 @@
+<div class="level_box" ng-repeat="level in vm.levelOption" ng-class=" vm.currentLevel != level?'hidden':'' ">
+  <div class="popup_tab">
+      <ul class="nav nav-tabs product_tab" role="tablist"> 
+          <li role="presentation" ng-repeat="group in vm.groupOption[level]" ng-click="vm.currentGroup = group" ng-class="vm.currentGroup == group?'active':''">
+              <a role="tab" data-toggle="tab">{{group}}</a>
+          </li>
+      </ul>
+  </div>
+  <div class="popup_option popup_scroller_1">
+    <div class="scroller tab-content">
+      <div role="tabpanel">
+        <div class="option_item" ng-repeat="option in vm.product.options | filter: vm.currentGroup" ng-class="{'excludes option_item_active':option.group_type == 'Exc' && option.quantity > 0}">
+          <div class="titbox">
+            <h3>{{option.name}}</h3>
+          </div>
+          <div class="imagebox">
+            <span>{{option.sellprices['sell_unit_price']}}</span>
+            <img ng-class="option.group_type != 'Exc' ? 'change_qty_img':''" src="{{option.image?'http://jt.banhmisub.com'+option.image:'http://jt.banhmisub.com/upload/2015_10/2015_10_31_161154_894752.jpg'}}" alt="{{option.product_id}}" id="img_{{option._id}}" ng-click="vm.changesize(option)"/>
+            <img class="change_qty_img ximg" src="http://pos.banhmisub.com/themes/banhmisub/images/deletex.png" ng-class="option.finish == 0?'':option.quantity == 0 && option.group_type != 'Exc'?'':'hidden'"/>
+          </div>
+          <div class="popup_amount" ng-class="option.group_type == 'Exc'? 'hidden':''">
+            <span ng-if="option.finish != undefined">
+              <button class="btn down mainbt" ng-click="vm.downQuantity(option, vm.optionType[option.option_type])">-</button>
+                <select class="popup_qty" ng-model="option.finish" ng-options="item.value as item.label for item in vm.optionType[option.option_type]" ng-change="option.quantity = option.finish; vm.changeQuantity(vm.optionType[option.option_type]); vm.calPrice()">
+                </select>
+              <button class="btn up mainbt" ng-click="vm.upQuantity(option, vm.optionType[option.option_type])">+</button>
+            </span>
+            <span ng-if="option.finish == undefined">
+              <button class="btn down mainbt btn-amount" ng-click="vm.downQuantity(option)">-</button>
+                <input type="number" class="popup_qty" ng-model="option.quantity" value="option.quantity" min="0" max="99" ng-change="vm.changeQuantity()">
+              <button class="btn up mainbt btn-amount" ng-click="vm.upQuantity(option)">+</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

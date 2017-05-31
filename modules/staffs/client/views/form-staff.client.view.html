@@ -1,0 +1,327 @@
+<form id="staffform" name="vm.form.staffForm" class="form-horizontal" ng-submit="vm.save(vm.form.staffForm.$valid)" novalidate enctype="multipart/form-data" method="post">
+  <div class="col-md-12 col-xs-12 col-sm-12 nopadding" style="border-bottom: 3px solid #337ab7">
+    <div class="col-md-10 col-xs-10 col-sm-10">
+      <ul class="nav nav-pills col-md-12 col-xs-12 col-sm-12 text-center">
+        <li ng-class="{ active: isSet('details') }">
+          <a ui-sref="staffs.edit.details" ng-click="setTab('details')">DETAILS</a>
+        </li>
+        <li ng-class="{ active: isSet('service') }">
+          <a ui-sref="staffs.edit.service" ng-click="setTab('service')">SERVICES</a>
+        </li>
+        <li ng-class="{ active: isSet('workinghours') }">
+          <a ui-sref="staffs.edit.workinghours" ng-click="setTab('workinghours')">WORKING HOURS</a>
+        </li>
+        <li ng-class="{ active: isSet('breaks') }">
+          <a ui-sref="staffs.edit.breaks" ng-click="setTab('breaks')">BREAKS</a>
+        </li>
+        <li ng-class="{ active: isSet('timeoff') }">
+          <a ui-sref="staffs.edit.timeoff" ng-click="setTab('timeoff')">TIME OFF</a>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="vm.staff" class="col-md-2 col-xs-2 col-sm-2 text-right nopadding">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button class="btn btn-danger btn-sm" ng-click="vm.remove()">
+        DELETE
+      </button>
+    </div>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 inline clearfix nopadding" style="clear:both;margin-top: 10px;">
+    <div ng-show="isSet('details')" class="col-md-12 col-xs-12 col-sm-12 clearfix nopadding" style="color:#333">
+      <div class="col-md-12 col-sm-12 col-xs-12 nopadding text-center borderbottom clearfix">
+        <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+          <img src="{{vm.staff.photo !='' ? vm.staff.photo : '/themes/admin/images/user-avatar.png' }}" id="preview_image" style="max-width: 175px;max-height:120px" onclick="document.getElementById('file').click()"/>
+          <div class="btn btn-info" style="clear:both; visibility: hidden;" id="file" name="file" ngf-select ng-model="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="preview_image_upload(this)">Select image</div>
+        </div>
+        <div class="col-md-10 col-sm-8 col-xs-8 nopadding">
+          <input type="text" class="form-control" ng-model="vm.staff.full_name" placeholder="Staff name"/>
+          <br/>
+          <textarea class="form-control" ng-model="vm.staff.address"></textarea>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+          Mobile
+        </div>
+        <div class="col-md-10 col-sm-8 col-xs-8 nopadding">
+          <input type="text" class="form-control" ng-model="vm.staff.mobile" placeholder="Phone"/>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+          Email
+        </div>
+        <div class="col-md-10 col-sm-8 col-xs-8 nopadding">
+          <input type="text" class="form-control" ng-model="vm.staff.email" placeholder="Email"/>
+        </div>
+        <div class="clearfix">&nbsp;</div>        
+      </div>      
+      <div class="col-md-12 col-sm-12 col-xs-12 nopadding text-center borderbottom clearfix">
+        <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+          Staff Login
+        </div>
+        <div class="col-md-10 col-sm-8 col-xs-8 nopadding text-left">
+           <toggle class="toggle" ng-model="vm.staff.is_employee" ng-change="changed()" onstyle="btn-info"></toggle> <small>Requires email</small>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-4 nopadding">
+        Number of working hours: {{ (vm.total_working_hours / 2).toFixed(2)}}
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+        Last Pay period(hours) : 40
+      </div>
+      <div class="col-md-2 col-sm-4 col-xs-4 nopadding" style="font-size: 20px;font-weight: 600;" >
+        {{vm.current_month}} &nbsp; &nbsp; &nbsp; Week {{vm.current_week}}
+      </div>
+     
+      <div class="col-md-5 col-sm-2 col-xs-2 nopadding">
+        <i class="fa fa-chevron-left" ng-click="vm.minus7days()" aria-hidden="true" style="font-size: 30px;cursor: pointer"></i>
+        <span ng-click="vm.triggerdateclick()">{{vm.display_start_date}} - {{vm.display_end_date}}</span>
+        <datepicker date-format="yyyy-MM-dd" style="visibility: hidden">
+          <input ng-model="timeoff_from" id="timeoff_from" type="text" class="form-control" ng-change="vm.change_data()"/>
+        </datepicker>
+        <i class="fa fa-chevron-right"  ng-click="vm.plus7days()" aria-hidden="true" style="font-size: 30px;cursor: pointer"></i>
+      </div>
+      <div ng-if="vm.has_working_data" class="col-md-12 col-sm-12 col-xs-12 nopadding text-center clearfix">
+        <div class="col-md-2 col-sm-2 col-xs-2 text-right">
+          Day
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Date
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Logged In
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Break
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Loutout
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          Hours
+        </div>
+        <div ng-repeat="arr in vm.list_working_hours_data" ng-init = "month = vm.getMonth(arr.year_month);year = vm.getYear(arr.year_month);">
+          <div class="col-md-12 col-sm-12 col-xs-12 text-right" id="{{year}}-{{month}}" style="padding:0;margin:0;margin-bottom: 15px;" ng-repeat="n in vm.range(vm.start_day, vm.end_day)" ng-init = 'current_day = "day_" + n ;day_start = n + " " + vm.convert_number_to_month[month] + " " + year '>
+            <div class="col-md-2 col-sm-2 col-xs-2 text-right" ng-init = "minus_day = n - 1;dayofweek = vm.convertToDayOfWeek(day_start, minus_day) ;current_dayofweek = vm.list_day_of_weeks[dayofweek]" style="font-size: 20px;font-weight: 700;text-transform: uppercase;">
+              {{current_dayofweek}}
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              <span>{{day_start}}</span>
+              <span ng-if="n == vm.start_day" ng-init="vm.display_start_date = day_start"></span>
+              <span ng-if="n == vm.end_day" ng-init="vm.display_end_date = day_start"></span>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              <span ng-if="arr[current_day]['work_start'] != '' " ng-init="work_start = vm.convert_24_hours_to_12_hours(arr[current_day]['work_start'])">{{work_start}}</span>
+              <span ng-if="arr[current_day]['work_start'] == '' ">Off</span>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              {{arr[current_day]['lunch']}}
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              <span ng-if="arr[current_day]['work_end'] != '' " ng-init="work_end = vm.convert_24_hours_to_12_hours(arr[current_day]['work_end'])">{{work_end}}</span>
+              <span ng-if="arr[current_day]['work_end'] == '' ">Off</span>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2" ng-init = "total_working = vm.count_working_hours(arr[current_day]['work_start'], arr[current_day]['work_end'], arr[current_day]['lunch']); vm.total_working_hours = vm.total_working_hours + total_working;">
+              {{total_working}}
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      <div ng-if="!vm.has_working_data" class="text-center col-md-12 col-xs-12 col-sm-12 text-center" style="margin-top:20px;font-size: 16px; font-weight: 500"> Nothing on {{vm.current_month}}</div>
+    </div>
+    <div ng-show="isSet('service')" class="col-md-12 col-xs-12 col-sm-12 clearfix">
+      <div class="col-md-2 col-sm-4 col-xs-4 nopadding">
+        <img src="{{vm.staff.photo !='' ? vm.staff.photo : '/themes/admin/images/user-avatar.png' }}" style="max-width: 175px;max-height:120px" />
+      </div>
+      <div class="col-md-10 col-sm-8 col-xs-8 nopadding" style="font-weight: bolder">
+        <h2>{{vm.staff.full_name}}</h2>
+        <p>will provide the folling services:</p>
+      </div>
+      <p class="clearfix">&nbsp;</p>
+      <div ng-if="!vm.show_all" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('all_service',1)">
+        <i id="all_service" class="glyphicon glyphicon-plus-sign font-30" ></i> <span class="font-20">All Services</span>
+      </div>
+      <div ng-if="vm.show_all" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('all_service',1)">
+        <i id="all_service" class="glyphicon glyphicon-minus-sign disabled font-30" ></i> <span class="font-20">All Services</span>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="all_service col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20" ng-repeat="service in vm.listService" id="div{{service._id}}" ng-click="vm.clickservice(service._id)" ng-show="vm.show_all" style="margin-left: 3%">
+        <div class="col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20">
+          <i ng-if="vm.list_service.indexOf(service._id)>-1" id="{{service._id}}" class="glyphicon glyphicon-minus-sign disabled service"> </i>
+          <i ng-if="vm.list_service.indexOf(service._id)==-1 || !_isEmpty(vm.list_service)" id="{{service._id}}" class="glyphicon glyphicon-plus-sign service"> </i>
+           {{service.name}}
+        </div>
+        
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <div ng-if="!vm.checf_cook" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('checf_cook',2)">
+        <i id="checf_cook" class="glyphicon glyphicon-plus-sign font-30"></i> <span class="font-20">Kitchen - ChefCook</span>
+      </div>
+      <div ng-if="vm.checf_cook" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('checf_cook',2)">
+        <i ng-if="vm.checf_cook" id="checf_cook" class="glyphicon glyphicon-minus-sign disabled font-30" ></i> <span class="font-20">Kitchen - ChefCook</span>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="checf_cook col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20" ng-repeat="service in vm.listService" id="div{{service._id}}" ng-click="vm.clickservice('checf_cook_'+service._id)" ng-show="vm.checf_cook" style="margin-left: 3%">
+        <div class="col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20" ng-if="service.cate_type =='checf_cook'">
+          <i ng-if="vm.list_checf_cook.indexOf(service._id)>-1" id="checf_cook_{{service._id}}" class="glyphicon glyphicon-minus-sign disabled checf_cook"> </i>   
+          <i ng-if="vm.list_checf_cook.indexOf(service._id)==-1 || !_isEmpty(vm.list_checf_cook)" id="checf_cook_{{service._id}}" class="glyphicon glyphicon-plus-sign checf_cook"> </i>{{service.name}}
+        </div>
+      </div>
+      <!-- -->
+      <div class="clearfix">&nbsp;</div>
+      <div ng-if="!vm.dish_washer" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('dish_washer',3)">
+        <i id="dish_washer" class="glyphicon glyphicon-plus-sign font-30"></i> <span class="font-20">Kitchen - Dish Washer</span>
+      </div>
+      <div ng-if="vm.dish_washer" class="col-md-12 col-sm-12 col-xs-12 nopadding cursor-pointer" style="font-weight: bolder" ng-click="vm.clickservice('dish_washer',3)">
+        <i ng-if="vm.dish_washer" id="dish_washer" class="glyphicon glyphicon-minus-sign disabled font-30" ></i> <span class="font-20">Kitchen - Dish Washer</span>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <div class="dish_washer col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20" ng-repeat="service in vm.listService" id="div{{service._id}}" ng-click="vm.clickservice('dish_washer_'+service._id)" ng-show="vm.dish_washer" style="margin-left: 3%">
+        <div class="col-md-12 col-sm-12 col-xs-12 cursor-pointer font-20" ng-if="service.cate_type =='dish_washer'">
+          <i ng-if="vm.list_dish_washer.indexOf(service._id)>-1" id="dish_washer_{{service._id}}" class="glyphicon glyphicon-minus-sign disabled dish_washer"> </i>   
+          <i ng-if="vm.list_dish_washer.indexOf(service._id)==-1 || !_isEmpty(vm.list_dish_washer)" id="dish_washer_{{service._id}}" class="glyphicon glyphicon-plus-sign dish_washer"> </i>{{service.name}}
+        </div>
+      </div>
+      <!-- -->
+    </div>
+    <div ng-show="isSet('workinghours')" class="col-md-12 col-xs-12 col-sm-12 clearfix">
+      <h1>
+        WORKING HOURS <br/>
+        <small>Time Intervals: 30mins</small>
+      </h1>
+      <div class="col-md-12 col-xs-12 col-sm-12 clearfix padding15" ng-repeat="day in vm.staff.workinghours">
+         <div class="col-md-2 col-xs-2 col-sm-6 ufc">
+          {{day.day}}
+         </div>
+         <div class="col-md-2 col-xs-12 col-sm-12" >
+          <toggle ng:click="vm.update_workinghours($index)" class="toggle" ng-model="day.active" ng-change="changed()" onstyle="btn-info"></toggle>          
+         </div>
+         <div class="col-md-1 col-xs-12 col-sm-12" >
+          From
+         </div>
+         <div class="col-md-2 col-xs-12 col-sm-12" ng-init="working_from_ = 'working_from_' + day.day">
+          <select class="form-control" id="working_from_{{day.day}}" ng-options="item as item._val for item in vm.draw_list_working_hours_30_minus track by item._id" ng-model="working_from_" ng-init="working_from_= vm.get_index_working_hours(day.from_time)" ng-change="vm.change_working_hours($index)"></select>
+         </div>
+         <div class="col-md-1 col-xs-12 col-sm-12" >
+          To
+         </div>
+         <div class="col-md-2 col-xs-12 col-sm-12" ng-init="working_to_ = 'working_to_' + day.day">
+          <select class="form-control" id="working_to_{{day.day}}" ng-options="item as item._val for item in vm.draw_list_working_hours_30_minus track by item._id" ng-model="working_to_" ng-init="working_to_= vm.get_index_working_hours(day.to_time,18)" ng-change="vm.change_working_hours($index,1)"></select>
+         </div>
+      </div>
+    </div>
+    <div ng-show="isSet('breaks')" class="col-md-12 col-xs-12 col-sm-12 clearfix padding15">
+     <h1 class="padding15">
+      BREAKS
+      <small>Time Interval: 25mins</small>
+     </h1>
+     <div class="col-md-12 col-xs-12 col-sm-12 clearfix padding15" ng-repeat="day in vm.list_day_of_week">
+       <div class="col-md-2 col-xs-2 col-sm-6 ufc">
+        {{day}}
+       </div>
+       <div class="col-md-2 col-xs-12 col-sm-12" >
+        <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-plus" ng-click="vm.add_break(day)"> ADD </i></button>
+       </div>
+       <div class="col-md-1 col-xs-12 col-sm-12" >
+        From
+       </div>
+       <div class="col-md-2 col-xs-12 col-sm-12" ng-init="from_day = 'from_' + day">
+        <select class="form-control" id="from_{{day}}" ng-options="item as item._val for item in vm.draw_list_working_hours track by item._id" ng-model="from_day" ng-init="from_day = vm.draw_list_working_hours[0]">
+          {{vm.draw_list_working_hours}}
+        </select>
+       </div>
+       <div class="col-md-1 col-xs-12 col-sm-12" >
+        To
+       </div>
+       <div class="col-md-2 col-xs-12 col-sm-12" ng-init="to_day = 'to_' + day">
+        <select class="form-control" id="to_{{day}}" ng-options="item as item._val for item in vm.draw_list_working_hours track by item._id" ng-model="to_day" ng-init="to_day = vm.draw_list_working_hours[108]">
+          {{vm.draw_list_working_hours}}
+        </select>
+       </div>
+     </div>
+     <div class="clearfix border-top">&nbsp;</div>
+     <div class="col-md-12 col-xs-12 col-sm-12 clearfix" ng-repeat="break in vm.staff.time_break">
+       <div class="time_break padding15" ng-init="_id = break.day + '_' + break.from_time + '_' + break.to_time" id="{{_id}}">
+         <span class="ufc col-md-2 col-xs-12 col-sm-12">{{break.day}}</span> &nbsp; &nbsp;
+         <span style="color:red" class="col-md-6 col-xs-12 col-sm-12">{{break.from_time}}-{{break.to_time}}</span>
+         <i class="glyphicon glyphicon-trash col-md-3 col-xs-12 col-sm-12" ng-click="vm.staff.time_break.splice($index,1);" style="font-size: 20px;"> &nbsp; </i>
+       </div>
+     </div>
+    </div>
+    <div ng-show="isSet('timeoff')" class="col-md-12 col-xs-12 col-sm-12 clearfix">
+     <h1>TIME OFF/HOLIDAYS</h1>
+     <div class="col-md-5 col-md-offset-1 col-xs-6 col-sm-6 clearfix">
+      <div class="col-md-3 col-xs-5 col-sm-5">
+        From:
+      </div>
+      <div class="col-md-9 col-xs-7 col-sm-7">
+        <datepicker date-format="yyyy-MM-dd" style="width:85%">
+          <input ng-model="timeoff_from" id="timeoff_from" type="text" class="form-control"/>
+        </datepicker>
+      </div>
+     </div>
+     <div class="col-md-5 col-md-offset-1 col-xs-6 col-sm-6 clearfix">
+      <div class="col-md-3 col-xs-5 col-sm-5">
+        To:
+      </div>
+      <div class="col-md-9 col-xs-7 col-sm-7">
+        <datepicker date-format="yyyy-MM-dd" style="width:85%">
+          <input ng-model="timeoff_to" id="timeoff_to" type="text" class="form-control"/>
+        </datepicker>
+      </div>
+     </div>
+     <div class="col-md-12 col-xs-12 col-md-offset-1  col-sm-12 clearfix" style="clear:both;margin-top: 20px">
+      <div class="col-md-1 col-xs-5 col-sm-5">
+        Note:
+      </div>
+      <div class="col-md-10 col-xs-7 col-sm-7">
+        <textarea class="form-control" id="timeoff_note"></textarea>
+      </div>      
+     </div>
+     <div class="col-md-12 col-xs-12 col-sm-12 clearfix text-center" style="clear:both;margin-top: 20px">
+      <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-plus" ng-click="vm.add_off()"> ADD </i></button>
+     </div>
+
+     <div class="col-md-12 col-xs-12 col-sm-12 clearfix text-center border-top" style="clear:both;margin-top: 20px">
+        <div class="col-md-12 col-xs-12 col-sm-12 clearfix" ng-repeat="time_off in vm.staff.time_off">
+         <div class="time_off padding15 text-left" ng-init="_id = $index" id="{{_id}}">
+           <span class="ufc col-md-4 col-xs-12 col-sm-12">From: {{time_off.from_date}} to {{time_off.to_date}}</span>
+           <span class="col-md-5 col-xs-12 col-sm-12">
+           {{time_off.noted}}
+           </span>
+           <i class="glyphicon glyphicon-trash col-md-2 col-xs-12 col-sm-12" ng-click="vm.staff.time_off.splice($index,1);" style="font-size: 20px;"> &nbsp; </i>
+         </div>
+       </div>
+     </div>
+
+    </div>
+  </div>
+</form>
+<style type="text/css">
+  .font-20 {
+    font-size: 20px;
+  }
+  .font-30 {
+    font-size: 30px;
+  }
+  .border-top{
+    border-top:3px solid #333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    clear: both;
+  }
+  .borderbottom{
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+  }
+  .padding15{
+    padding: 15px;
+  }
+  .border-top{
+    border-top:3px solid;
+  }
+  .ufc{
+    text-transform: capitalize;
+  }
+</style>

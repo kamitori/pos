@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.systemdashboard.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.systemdashboard.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="systemdashboards.edit({ systemdashboardId: vm.systemdashboard._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.systemdashboard.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.systemdashboard.user"
+            ng-bind="vm.systemdashboard.user.displayName"></span>
+      <span ng-if="!vm.systemdashboard.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.systemdashboard.content"></p>
+</section>

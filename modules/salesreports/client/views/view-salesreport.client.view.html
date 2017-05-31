@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.salesreport.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.salesreport.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="salesreports.edit({ salesreportId: vm.salesreport._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.salesreport.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.salesreport.user"
+            ng-bind="vm.salesreport.user.displayName"></span>
+      <span ng-if="!vm.salesreport.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.salesreport.content"></p>
+</section>

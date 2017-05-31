@@ -1,0 +1,92 @@
+<div class="modal fade" style="pointer-events: none;">
+  <div class="modal-dialog" style="pointer-events: auto;">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #DAA520">
+        <!-- <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Setup Your Company</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="wz-step">
+          <li ng-class="{'done':vm.step > 1}" class="step">
+            <label>Welcome</label>
+            <a ng-click="vm.step = 1" href="javascript:void(0);">
+              <span class="step-start step-circle">1</span>
+              <span class="step-ok step-circle">
+                <i class="glyphicon glyphicon-ok"></i>
+              </span>
+            </a>
+          </li>
+          <li ng-class="{'done':vm.step > 2}" class="step">
+            <label>Hour</label>
+            <a ng-click="vm.changeStep(2)" href="javascript:void(0);">
+              <span class="step-start step-circle">2</span>
+              <span class="step-ok step-circle">
+                <i class="glyphicon glyphicon-ok"></i>
+              </span>
+            </a>
+          </li>
+          <li ng-class="{'done':vm.step > 3}" class="step">
+            <label>Add staff</label>
+            <a ng-click="vm.changeStep(3)">
+              <span class="step-start step-circle">3</span>
+              <span class="step-ok step-circle">
+                <i class="glyphicon glyphicon-ok"></i>
+              </span>
+            </a>
+          </li>
+          <li class="step">
+            <label>Add service</label>
+            <a ng-click="vm.changeStep(4)">
+              <span class="step-start step-circle">4</span>
+              <span class="step-ok step-circle">
+                <i class="glyphicon glyphicon-ok"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+				<div class="wz-body">
+          <div class="wz-content" ng-if="vm.step == 1">
+            <h2>Welcome to Booking</h2>
+            <h5>We'll get you booking appointments in no time</h5>
+            <button type="submit" ng-click="vm.save(vm.form.companyForm.$valid)" class="btn btn-primary btn-next">Next</button>
+            <br/><br/>
+            <div ng-include="'/modules/core/client/views/form-company.client.view.html'"></div>
+          </div> 
+          <div class="wz-content" ng-if="vm.step == 2">
+            <h2>Set your Business Hours</h2>
+            <h5>Let your customers know when you're open</h5>
+            <button ng-click="vm.step = vm.step - 1" class="btn btn-default btn-prev">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+            </button>
+            <button ng-click="vm.saveHour()" class="btn btn-primary btn-next">Next</button>
+            <br/><br/>
+            <div ng-include="'/modules/core/client/views/working-hour.client.view.html'"></div>
+          </div> 
+          <div class="wz-content" ng-if="vm.step == 3">
+            <h2>Add Your Staff</h2>
+            <h5>Don't worry - you can always edit these later</h5>
+            <button ng-click="vm.step = vm.step - 1" class="btn btn-default btn-prev">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+            </button>
+            <button ng-click="vm.step = vm.step + 1" class="btn btn-primary btn-next">Next</button>
+            <br/><br/>
+            <div ng-include="'/modules/core/client/views/add-staff.client.view.html'"></div>
+          </div> 
+          <div class="wz-content" ng-if="vm.step == 4">
+            <h2>Add the Services You Offer</h2>
+            <h5>Don't worry - you can always edit these later</h5>
+            <button ng-click="vm.step = vm.step - 1" class="btn btn-default btn-prev">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+            </button>
+            <button ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true" class="btn btn-primary btn-next">Next</button>
+            <br/><br/>
+            <div ng-include="'/modules/core/client/views/add-service.client.view.html'"></div>
+          </div>    
+        </div>
+      </div>
+      <div style="clear:both">&nbsp;</div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

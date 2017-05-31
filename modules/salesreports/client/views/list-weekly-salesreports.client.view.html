@@ -1,0 +1,152 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <div class="setting_tab col-md-12 col-xs-12 col-sm-12" style="margin-bottom:20px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+      <a ui-sref="salesreports.list" data-target="salesreports.list" data-toggle="tab">Daily</a>
+    </li>
+    <li role="presentation" class="active">
+      <a data-toggle="tab">Weekly</a>      
+    </li>
+    <li role="presentation">
+      <a ui-sref="salesreports.monthly" data-target="salesreports.monthly" data-toggle="tab">Monthly</a>
+    </li>    
+  </ul>
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <h1 class="text-center">WEEKLY ACTIVITIES SUMMARY</h1>
+    <h1 class="text-center">Week {{vm.current_weeks}} {{vm.current_month}}</h1>
+    <div class="col-md-6 col-xs-8 col-sm-8 col-md-offset-3 col-sm-offset-2 col-xs-offset-2 text-center">
+      <div class="col-md-10 col-xs-10 col-sm-10">
+        <input ng-model="search_order" class="form-control" type="text" ng-change="vm.search_order()" placeholder="Search Sale Orders...">
+      </div>
+      <div class="col-md-2 col-xs-2 col-sm-2">
+        <input type="button" value="Go" class="btn btn-default" ng-click="vm.searchGrid();" />
+      </div>
+    </div>
+    <div class="col-md-12 clearfix">&nbsp;</div>
+    <div class="col-md-6 col-xs-8 col-sm-8 col-md-offset-3 col-sm-offset-2 col-xs-offset-2 text-center">
+      <div class="col-md-10 col-xs-10 col-sm-10" style="font-size: 30px;">
+        <i class="fa fa-chevron-left" ng-click="vm.minusdays(7)" aria-hidden="true" style="font-size: 30px;cursor: pointer"></i> &nbsp;&nbsp;&nbsp;
+        <span ng-click="vm.triggerdateclick()" style="font-size: 16px">{{vm.display_start_date}} - {{vm.display_end_date}}</span>
+        <datepicker date-format="dd MMM yyyy" style="visibility: hidden">
+          <input ng-model="timeoff_from" id="timeoff_from" type="text" class="form-control" ng-change="vm.change_data()"/>
+        </datepicker>
+          &nbsp;&nbsp;&nbsp;
+        <i class="fa fa-chevron-right"  ng-click="vm.plusdays(7)" aria-hidden="true" style="font-size: 30px;cursor: pointer"></i>
+      </div>     
+    </div>   
+  </div>
+  <div ng-controller="SalesreportsListController" class="col-md-12 col-xs-12 col-sm-12">
+    <div id="grid" ui-grid-pagination ui-grid-exporter ui-grid="vm.gridOptions" class="grid"></div>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 div_total">
+    <div class="col-md-8 col-xs-8 col-sm-8">
+      <div class="col-md-4 col-xs-4 col-sm-4">
+        In-Store: ${{vm.total_instore}}
+      </div>
+      <div class="col-md-4 col-xs-4 col-sm-4">
+        Online: ${{vm.total_online}}
+      </div>
+      <div class="col-md-4 col-xs-4 col-sm-4">
+        Delivery: ${{vm.total_delivery}}
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4 text-right">
+      Amount: ${{vm.total_amount}}
+    </div>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 div_export">
+    <div class="col-md-2 col-xs-2 col-sm-2" ng-click="vm.exportPdf()">
+      Export PDF
+    </div>
+    <div class="col-md-2 col-xs-2 col-sm-2" ng-click="vm.exportToExcel('#export_table')">
+      Excel
+    </div>
+    <div class="col-md-2 col-xs-2 col-sm-2">
+      Sale Orders: {{vm.gridOptions.data.length}} (${{vm.total_amount}})
+    </div>
+    <div class="col-md-2 col-xs-2 col-sm-2">
+      Purchase Orders: {{vm.total_purchase_order}} (${{vm.total_purchase_order_price}})
+    </div>
+    <div class="col-md-4 col-xs-4 col-sm-4 text-right">
+      Total: ${{vm.total_amount}}
+    </div>
+  </div>
+</div>
+<div id="export_table" style="display: none;">
+  <table border="1">
+    <thead>
+      <tr class="table-header">
+        <th>Day</th>
+        <th>Date</th>
+        <th>In-Store</th>
+        <th>Online</th>
+        <th>Delivery</th>
+        <th>PO</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in vm.gridOptions.data" >
+        <td>{{item.day}}</td>        
+        <td>{{item.date}}</td>
+        <td>${{(item.total_instore).formatMoney(2)}}</td>
+        <td>${{(item.total_online).formatMoney(2)}}</td>
+        <td>${{(item.total_delivery).formatMoney(2)}}</td>
+        <td>${{(item.total_po).formatMoney(2)}}</td>
+        <td>${{(item.total).formatMoney(2)}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">IN-STORE:</td>
+        <td colspan="4">${{vm.total_instore}}</td>            
+      </tr>
+      <tr>
+        <td colspan="3">ONLINE: </td>
+        <td colspan="4">{{vm.total_online}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">DELIVERY: </td>
+        <td colspan="4">{{vm.total_delivery}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">AMOUNT: </td>
+        <td colspan="4">${{vm.total_amount}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">SALE ORDERS {{vm.gridOptions.data.length}}: </td>
+        <td colspan="4"> (${{vm.total_amount}})</td>
+      </tr>
+      <tr>
+        <td colspan="3">TOTAL:</td>
+        <td colspan="4">${{vm.total_amount}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<style type="text/css">
+  .div_total{
+    background-color: #808080;
+    opacity: 0.7;
+    color: white;
+    line-height: 50px;
+  }
+  .div_export{
+    text-transform: uppercase;
+    color: white;
+    background-color: gray;
+    line-height: 50px;
+  }
+  .ui-grid-header-cell-wrapper{
+    padding-top:5px;
+    padding-bottom: 5px;
+    background-color: #808080;
+    opacity: 0.7;
+    color: white;
+  }
+  .ui-grid-filter-container{
+    display: none;
+  }
+  .ui-grid-row{
+    height: 45px !important;
+  }
+</style>

@@ -1,0 +1,30 @@
+<table class="table table-striped">
+	<tr ng-repeat="staff in vm.listStaff">
+		<td>
+			<img src="/themes/admin/images/user-avatar50x50.png" width="40">
+		</td>
+		<td>
+			<input name="name" type="text" ng-model="staff.name" id="name" class="form-control" ng-click="vm.currentStaff = staff" placeholder="Name" ng-change="vm.updateStaff()">
+		</td>
+		<td>
+			<input name="email" type="text" ng-model="staff.email" id="email" class="form-control" ng-click="vm.currentStaff = staff" placeholder="Email" ng-change="vm.updateStaff()">
+		</td>
+		<td>
+			<span ng-if="vm.listStaff.length > 1" class="pull-right" ng-click="vm.currentStaff = staff; vm.deleteStaff()"><i class="glyphicon glyphicon-remove line30"></i></span>&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="/themes/admin/images/user-avatar50x50.png" width="40">
+		</td>
+		<td>
+			<input name="name" type="text" ng-model="vm.newStaff.name" id="name" class="form-control" placeholder="Name">
+		</td>
+		<td>
+			<input name="email" type="text" ng-model="vm.newStaff.email" id="email" class="form-control" placeholder="Email">
+		</td>
+		<td>
+			<button class="btn btn-primary" ng-click="vm.addStaff()">Add</button>
+		</td>
+	</tr>
+</table>

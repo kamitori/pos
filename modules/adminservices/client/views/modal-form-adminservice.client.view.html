@@ -1,0 +1,100 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #DAA520">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Create Services</h4>
+      </div>
+      <div class="modal-body">
+        <form name="vm.form.adminserviceForm" class="form-horizontal" ng-submit="vm.save(vm.form.adminserviceForm.$valid)" novalidate enctype="multipart/form-data" method="post">
+          <fieldset>
+            <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+              <div class="col-md-2 col-sm-6 col-xs-6">
+                <img id="preview_image" class="col-md-12 col-sm-12 col-xs-12" style="max-width:100px;height:50px;margin-bottom: 10px;padding:0" src="{{vm.adminservice._id ? vm.adminservice.imgthumb : '/themes/admin/images/no-image-box.png' }}" onclick="document.getElementById('file').click()" />            
+                <div class="btn btn-info" style="clear:both; visibility: hidden;" id="file" name="file" ngf-select ng-model="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="preview_image_upload(this)">
+                  Select image
+                </div>
+              </div>
+              <div class="col-md-10 col-sm-6 col-xs-6">            
+                <div class="form-group" show-errors>              
+                  <input name="name" type="text" ng-model="vm.adminservice.name" id="name" class="form-control" placeholder="Name" required style="margin-bottom: 15px">
+                  <div ng-messages="vm.form.adminserviceForm.name.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Service name is required.</p>
+                  </div>              
+                  <input name="description" type="text" ng-model="vm.adminservice.description" id="description" class="form-control" placeholder="Description" />
+                </div>
+                
+
+              </div>          
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <label class="control-label" for="sprice">Service Cost($)</label>            
+              </div>
+
+              <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+                <input name="sprice" type="number" ng-model="vm.adminservice.sprice" id="sprice" class="form-control col-md-10 col-xs-9 col-sm-9" placeholder="$0.0" min="0" max="99999999" value="{{vm.adminservice.sprice | numberFixedLen}}" required>
+              </div>
+
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+              <div class="col-md-2 col-sm-4 col-xs-6 ">
+                <label class="control-label" for="sduration">Service Time(mins)</label>            
+              </div>
+
+              <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+                 <input name="sduration" type="number" ng-model="vm.adminservice.sduration" id="sduration" class="form-control" min="0" max="864000" class="form-control" placeholder="60 mins" value="{{vm.adminservice.sduration | numberFixedLen}}" required>
+              </div>
+
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <label class="control-label" for="extratime">Extra Time(mins)</label>            
+              </div>
+
+              <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+                 <input name="sduration" type="number" ng-model="vm.adminservice.extratime" id="extratime" class="form-control" min="0" max="864000" class="form-control" placeholder="15 mins"  required>
+              </div>
+
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 bot20px">
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <label class="control-label" for="stype">Color Identify</label>
+              </div>
+
+              <div class="col-md-10 col-sm-8 col-xs-6 nopadding">
+                <select class="form-control" ng-model="vm.adminservice.stype" name="stype">
+                  <option value="green">Green</option>
+                  <option value="blue">Blue</option>
+                  <option value="red">Red</option>
+                  <option value="black" ng-selected>Black</option>
+                </select>
+              </div>
+
+            </div>
+
+           
+            
+            <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+              <button type="submit" class="btn btn-primary">{{vm.adminservice._id ? 'Update' : 'Create'}}</button>
+            </div>
+            <div ng-show="vm.error" class="text-danger">
+              <strong ng-bind="vm.error"></strong>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <!-- <div style="clear:both">&nbsp;</div> -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

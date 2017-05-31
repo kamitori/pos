@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default mainmenutop" ng-controller="HeaderController as vm2">
+	<div class="navbar-header">
+        <a class="navbar-brand iconnav" href="#" ng-click="vm2.onOfMenu()">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </a>
+    </div>
+	<div class="navbar-header">
+		<span class="navbar-brand maintitle">
+			<a href="/mainstations">
+				<i class="fa fa-chevron-left"></i> Back
+			</a>
+		</span>
+	</div>
+	<div class="navbar-header">
+		<span class="navbar-brand maintitle" href="#">
+				Order station
+		</span>
+	</div>
+	<div class="navbar-header">
+		<span class="navbar-brand maintitle" href="#">
+				Table 1
+		</span>
+	</div>
+	<div class="navbar-header" ng-click="vm.reverse()">
+		<span class="navbar-brand maintitle" href="#">
+				Reverse
+		</span>
+	</div>
+	<div class="nav navbar-nav navbar-right logout">
+		<span class="navbar-brand userstaff">
+				<a href="#">
+					Ivanka<br>
+					<span id="department">Sale Staff</span>
+				</a>
+		</span>
+		<a class="navbar-brand iconnav" href="/api/auth/signout" target="_self">
+				<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+		</a>
+	</div>
+	<div class="nav navbar-nav navbar-right login" style="display: none;">
+		<a class="navbar-brand iconnav" href="#">
+				<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+		</a>
+	</div>
+</nav>

@@ -1,0 +1,32 @@
+<div class="productitem">
+  <div class="popup_title">
+      <h2>{{vm.product.name}}</h2>
+      <p class="description_item">{{vm.product.product_desciption}}</p>
+      <textarea class="note_product form-control" ng-model="vm.product.note" placeholder="Note"></textarea>
+  </div>
+  <div class="popup_image">
+      <img src="http://jt.banhmisub.com{{vm.product.image}}" alt="{{vm.product.name}}" />
+  </div>
+  </div>
+  <div class="popup_prices">
+    <div class="op_description">
+      <span ng-repeat="des in vm.product.op_description"><b>{{des}}</b></span>
+    </div>
+    <div class="popup_amount">
+        <button class="btn down mainbt" ng-click="vm.product.quantity > 1 ? vm.product.quantity = vm.product.quantity - 1 : vm.product.quantity = 1">-</button>
+        <input class="popup_qty" type="number" onfocus="onFocusQuantity(this)" value="1" id="popup_qty_main" ng-model="vm.product.quantity" max="99"/>
+        <button class="btn up mainbt" ng-click="vm.product.quantity < 99 ? vm.product.quantity = vm.product.quantity + 1 : vm.product.quantity = 99">+</button>
+    </div>
+    <div class="popup_price">
+        <span ng-if="vm.product.sell_price > 0">$</span>{{(vm.product.sell_price * vm.product.quantity).toFixed(2)}} &nbsp;
+    </div>
+    <div class="popup_add_bt">
+        <button class="popup_add_cart totalbg btn-blue" ng-click="vm.update?vm.updateCart(vm.product):vm.addCart(vm.product)">{{vm.update?'Update Cart':'Add to Cart'}}</button>
+    </div>
+    <div class="popup_control" ng-if="vm.levelOption.length > 1">
+        <button class="back_level btn btn-warning" ng-click="vm.backLevel()" ng-if="vm.level > 0">«Back option</button>
+        <button class="next_level btn btn-warning" ng-click="vm.nextLevel()" ng-if="vm.level < (vm.levelOption.length - 1)">Continues »</button>
+    </div>
+  </div>
+<div class="tabs" ng-include="'modules/orders/client/views/product-option.client.view.html'">
+</div>

@@ -1,0 +1,94 @@
+.wapper{
+    margin: 0;
+    width: 100%;
+}
+.fullbox{
+    background: white;
+    display: table;
+    float: left;
+    height: 100vh;
+    margin:0;
+    padding: 0;
+    width: 100%;
+}
+.left_cont{
+    background: black;
+    color: white;
+    float: left;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    min-height: 750px;
+    padding: 0;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    width: 235px;
+}
+.right_cont{
+    float: left;
+    height: 100%;
+    margin: 0;
+    margin-left: 235px;
+    padding: 0;
+}
+.navlogo{
+    text-align: center;
+}
+.navlogo img{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 70%;
+}
+.navleft li a{
+    color: #f5f5f5;
+    font-family: 'Avenir35Light', Verdana;
+    font-size: 16px;
+    padding-left: 48px;
+}
+.navleft li .active{
+    color: black;
+    background-color:#eeeeee;
+}
+.navleft li a:hover, .navleft li a:focus{
+    color: black;
+    background-color:#eeeeee;
+}
+
+
+/*Menu top*/
+.mainmenutop{
+    background-color: #0586ca;
+    background-image: none;
+    /*background-image: -webkit-linear-gradient(top, #3c3c3c 0%, #222 100%);
+    background-image: -o-linear-gradient(top, #3c3c3c 0%, #222 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3c3c3c), to(#222));
+    background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+    background-repeat: repeat-x;*/
+    border:none;
+    border-radius: 0;
+    color: white;
+}
+.mainmenutop a, .mainmenutop .navbar-brand, .mainmenutop .navbar{
+    color: white;
+}
+.iconnav span{
+    font-size: 23px;
+    line-height: 14px!important;
+}
+.maintitle{
+    font-family: 'Avenir65Medium', Verdana;
+    text-transform: uppercase;
+}
+.mainmenutop .logout, .mainmenutop .login{
+    margin-right: 10px;
+}
+.userstaff{
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 7px !important;
+    text-align: right;
+}
+.department{
+    clear: both;
+}

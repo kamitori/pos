@@ -1,0 +1,75 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <div class="setting_tab col-md-12 col-xs-12 col-sm-12" style="margin-bottom:20px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" >
+      <a ui-sref="settingsaccounts.list" data-target="settingsaccounts.list" data-toggle="tab">Account</a>
+    </li>
+    <li role="presentation" class="active">
+      <a data-toggle="tab">Staff</a>
+    </li>
+    <li role="presentation">
+      <a ui-sref="adminservices.list" data-target="adminservices.list" data-toggle="tab">Service</a>
+    </li>
+    <li role="presentation">
+      <a href="#settings" data-target="#settings" data-toggle="tab">Payment</a>
+    </li>
+    <li role="presentation">
+      <a ui-sref="setups.list" data-target="#setups.list" data-toggle="tab">Notifications</a>
+    </li>
+  </ul>
+</div>
+<div class="col-md-2 col-xs-4 col-sm-4 nopadding">
+  <div class="col-md-12 col-xs-12 col-sm-12 nopadding">
+    <div class="col-md-10 col-xs-9 col-sm-9 nopadding">
+      <input type="text" class="form-control" id="search" ng-model="q" value="" placeholder="Search..." />
+    </div>
+    <div class="col-md-2 col-xs-3 col-sm-3 nopadding" ng-click="sortType = 'name';sortReverse = !sortReverse">
+      <i class="glyphicon glyphicon-sort-by-attributes font-28">&nbsp;</i>
+    </div>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 nopadding" style="margin-top: 10px;">
+    <button id="add_more" class="col-md-12 col-xs-12 col-sm-12 btn btn-lg btn-info" ng-click="vm.showModal();" >
+      <i class="glyphicon glyphicon-plus"> More </i>
+    </button>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 nopadding ui-list-item" style="margin-top: 5px;border-top:1px #333 solid;padding:5px;cursor: pointer" ng-repeat="staff in vm.staffs | filter:q | orderBy:sortType:sortReverse | startFrom:vm.currentPage*vm.pageSize | limitTo:vm.pageSize" id="{{staff._id}}" ui-sref="staffs.edit({ staffId: staff._id })" after-repeat>
+    <div class="col-md-3 col-xs-4 col-sm-4 nopadding imag-contener staff_photo">
+      <img id="img{{staff._id}}" ng-if="staff.photo==''" src="/themes/admin/images/user-avatar50x50.png" />
+      <img id="img{{staff._id}}" ng-if="staff.photo!=''" src="{{staff.photo}}" />
+    </div>
+    <div class="col-md-9 col-xs-8 col-sm-8 staff_info">
+      <p ng-bind="staff.full_name"></p>
+      <p ng-if="staff.phone!=''">
+        Phone : <span ng-bind="staff.mobile"></span>
+      </p>
+      <p ng-if="staff.mobile==''">Phone: N/A</p>
+    </div>
+  </div>
+  <div class="col-md-12 col-xs-12 col-sm-12 text-center nopadding" ng-if="vm.staffs.$resolved && vm.staffs.length">
+    <button class="btn btn-primary" ng-disabled="vm.currentPage == 0" ng-click="vm.currentPage = vm.currentPage-1">
+      <
+    </button>
+    <input min="1" id="run_link" ng-change="vm.changeData()" max="{{vm.numberOfPages()}}" only-digits ng-model="run_link" class="form-control" type="number" ng-pattern="/^[0-9]*$/" style="width:70px;display:inline-block!important" value="{{vm.currentPage+1}}" />      
+    <button class="btn btn-primary" ng-disabled="vm.currentPage >= vm.staffs.length/vm.pageSize - 1" ng-click="vm.currentPage = vm.currentPage + 1">
+      >
+    </button>
+  </div>
+</div>
+<div class="col-md-10 col-xs-8 col-sm-8" ui-view>
+  <div ng-include="'/modules/staffs/client/views/form-staff.client.view.html'"></div>
+</div>
+</div>
+<style type="text/css">
+  .imag-contener img{
+    max-width: 65px;
+  }
+  @media screen (max-width: 1025) {
+    .staff_photo {
+      display: none !important;
+    }
+    .staff_info {
+      width: 100% !important;
+    }
+  }
+</style>

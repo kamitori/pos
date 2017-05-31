@@ -1,0 +1,100 @@
+.bookpanel{
+	background: white;
+	border: none;
+	margin-top: 25px;
+	padding-bottom: 10px;
+}
+.bookpanel .panel-heading{
+	background: white;
+	text-align: center;
+	border: none;
+}
+.bookpanel .panel-heading img{
+	height: 40px;
+}
+.bookpanel .panel-heading h3{
+	font-size: 18px;
+	line-height: 10px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding-top: 15px;
+	text-transform: uppercase;
+}
+.bookpanel .panel-body{
+	margin-top: 1px;
+	padding-top: 0;
+	text-align: center;
+}
+.bookpanel .price{
+	clear: both;
+	float: left;
+	font-family: "Avenir95Black","Arial";
+	font-size: 20px;
+	width: 100%;
+}
+.bookpanel .list-group{
+	margin: auto;
+	padding-left: 39px;
+	width: 250px;
+}
+.bookpanel .list-group-item{
+	color: #005069;
+	border: none;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.bookpanel .glyphicon-ok-sign{
+	color: #50b650;
+	font-size: 20px;
+	margin-left: -25px;
+	margin-top: 3px;
+	position: absolute;
+}
+.bookbt{
+	margin-left: -39px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.bookbt .btn{
+	font-size: 15px;
+	font-weight: 100;
+}
+.platinumblan{
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(221,221,221,0.85);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(221,221,221,0.85);
+	box-shadow: 0px 0px 10px 0px rgba(221,221,221,0.85);
+}
+.bacsicblan .panel-heading, .bacsicblan .panel-body{
+	color: #005069;
+}
+.bacsicblan .bookbt .btn{
+	background: #005069;
+	border: 1px solid #005069;
+}
+
+
+.platinumblan .panel-heading, .platinumblan .panel-body{
+	color: #e88700;
+}
+.platinumblan .bookbt .btn{
+	background: #e88700;
+	border: 1px solid #e88700;
+
+}
+
+.diamondplan .panel-heading, .diamondplan .panel-body{
+	color: #e5bd05;
+}
+.diamondplan .bookbt .btn{
+	background: #e5bd05;
+	border: 1px solid #e5bd05;
+
+}
+.regular{
+    background-color: transparent;
+    background-image: url("/modules/accountplans/client/img/icon-20.png");
+    background-position: top left;
+	height: 110px;
+	position: absolute;
+	width: 110px;
+}

@@ -1,0 +1,38 @@
+<div ng-include="'/modules/orders/client/views/header-order.client.view.html'"></div>
+<section>
+  <div id="seat">
+    <div class="col-xs-10">
+      <button type="button" class="btn btn-blue">All</button>
+    </div>
+    <div class="col-xs-2 text-right">
+      <button type="button" class="btn btn-blue btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-blue btn-circle"><i class="glyphicon glyphicon-minus"></i></button>
+    </div> 
+  </div>
+  <ul class="list-unstyled tag" id="group-category">
+    <li  ng-repeat="groupcat in vm.listGroupCategory" ng-click="vm.filterCategory = {group: groupcat}" ng-class="vm.filterCategory.group == groupcat?'active':''">{{ groupcat }}</li>
+  </ul>
+
+  <div class="col-xs-4 col-md-3 category-prod" ng-repeat="category in vm.listCategory | filter: vm.filterCategory " ng-if="category.pubblic == 1 && category.hidden_on_website != 1" ng-click="vm.loadProductFromCategory(category.name)">
+    <div class="block">
+      <img src="http://pos.banhmisub.com/{{category.image}}" alt="{{category.name}}">
+      <div class="inline">
+        {{category.name}}
+      </div>
+    </div>
+  </div>
+  <div class="product-list col-">
+    <div class="col-xs-3" ng-repeat="product in vm.listProduct" ng-click="vm.popupProduct(product)">
+      <div class="product-detail" >
+        <span class="name">{{product.name}}</span>
+        <img src="{{product.image}}" alt="" class="image">
+        <span class="description">{{product.description}}</span>
+        <span ng-bind="product.custom?'Starting from:':'Price:'"></span> <span class="price">${{product.price}}</span>
+      </div>
+    </div>
+  </div>
+</section> 
+<div ng-include="'/modules/orders/client/views/footer-order.client.view.html'"></div>
+
+<!-- <div class="cart-content" ng-include="'/modules/orders/client/views/cart-content.client.view.html'"></div> -->

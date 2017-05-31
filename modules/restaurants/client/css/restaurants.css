@@ -1,0 +1,39 @@
+.restaurantpage{
+  background-image: url('/themes/client/images/bg-restaurant.jpg');
+  background-size: cover;
+  display: table;
+  float: left;
+  height: 100vh;
+  width: 100%;
+}
+.boxrestaurant {
+  margin-top: 100px;
+  color: #eee;
+}
+.block-location {
+	background-color:  rgba(1,2,3,.75);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.block-location p {
+  margin-bottom: 5px;
+}
+.green {
+  color: limegreen;
+}
+.bg-yellow {
+  background-color: #f1c40f;
+}
+.bg-orange {
+  background-color: #e67e22;
+}
+.bg-red {
+  background-color: #e74c3c;
+}
+.bg-blue{
+  background-color: #2980b9;
+}
+.height80{
+  line-height: 80px;
+}

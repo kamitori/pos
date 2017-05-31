@@ -1,0 +1,47 @@
+{
+  "name": "booking-system",
+  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+  "homepage": "http://meanjs.org/",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-bootstrap": "~1.2.1",
+    "angular-messages": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-ui-notification": "~0.2.0",
+    "angular-ui-router": "~0.2.18",
+    "bootstrap": "~3.3.6",
+    "ng-file-upload": "~12.1.0",
+    "owasp-password-strength-test": "~1.3.0",
+    "angular-ui-grid": "^4.0.4",
+    "angular-promise-buttons": "~0.1.20",
+    "angular-file-upload": "~2.5.0",
+    "angular-bootstrap-toggle": "~0.1.2",
+    "fullcalendar": "~2.9.1",
+    "fullcalendar-scheduler": "~1.3.3",
+    "angular-ui-calendar": "master",
+    "angular-modal-service": "~0.11.1",
+    "crypto-js": "~3.1.9",
+    "angularjs-datepicker": "~2.1.17",
+    "angularjs-dropdown-multiselect": "^1.11.8",
+    "components-font-awesome": "^4.7.0",
+    "angular-local-storage": "^0.6.0",
+    "angular-color-picker": "angularjs-color-picker#^3.3.0",
+    "angular-md5": "^0.1.10",
+    "datatables.net": "^1.10.15"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap-theme.css",
+        "less/bootstrap.less"
+      ]
+    },
+    "jquery": {
+      "main": []
+    }
+  }
+}

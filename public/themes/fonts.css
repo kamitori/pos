@@ -1,0 +1,24 @@
+@font-face {
+	font-family: 'Avenir35Light';
+	src: url('fonts/Avenir35Light/Avenir35Light.eot'),
+		 url('fonts/Avenir35Light/Avenir35Light.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/Avenir35Light/Avenir35Light.woff') format('woff'),
+		 url('fonts/Avenir35Light/Avenir35Light.ttf') format('truetype'),
+		 url('fonts/Avenir35Light/Avenir35Light.svg') format('svg');
+}
+@font-face {
+	font-family: 'Avenir65Medium';
+	src: url('fonts/Avenir65Medium/Avenir65Medium.eot'),
+		 url('fonts/Avenir35Light/Avenir65Medium.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/Avenir65Medium/Avenir65Medium.woff') format('woff'),
+		 url('fonts/Avenir65Medium/Avenir65Medium.ttf') format('truetype'),
+		 url('fonts/Avenir65Medium/Avenir65Medium.svg') format('svg');
+}
+@font-face {
+	font-family: 'Avenir95Black';
+	src: url('fonts/Avenir95Black/Avenir95Black.eot'),
+		 url('fonts/Avenir35Light/Avenir95Black.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/Avenir95Black/Avenir95Black.woff') format('woff'),
+		 url('fonts/Avenir95Black/Avenir95Black.ttf') format('truetype'),
+		 url('fonts/Avenir95Black/Avenir95Black.svg') format('svg');
+}

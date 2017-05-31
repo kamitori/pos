@@ -1,0 +1,151 @@
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.header-profile-image {
+  border-radius: 50%;
+  height: 28px;
+  margin-right: 5px;
+  opacity: 0.8;
+  width: 28px;
+}
+.open .header-profile-image,
+a:hover .header-profile-image {
+  opacity: 1;
+}
+.user-header-dropdown-toggle {
+  padding-bottom: 11px !important;
+  padding-top: 11px !important;
+}
+.user-primary-account {
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.error-text {
+  display: none;
+}
+.has-error .help-block.error-text {
+  display: block;
+}
+.has-error .help-inline.error-text {
+  display: inline;
+}
+.wz-step {
+  padding: 10px;
+  width: 100%;
+  float: left;
+}
+.step{
+  float: left;
+  height: 70px;
+  list-style: none;
+  text-align: center;
+  width: 25%;
+}
+.step label {
+  display: block;
+  text-align: center;
+  font-size: 125%;
+}
+.step a{
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+.step a::after {
+  background: #ccc;
+  color: #ccc;
+  content: '-';
+  display: block;
+  height: 5px;
+  margin-top: 15px;
+  margin-left: 80px;
+  width: 100%;
+}
+.step.done a::after {
+  background: #e2bc00;
+}
+.step:nth-child(4) a::after {
+  display: none;
+}
+.step .step-circle{
+  background-color: #e2bc00;
+  border-radius: 50%;
+  color: #fff;
+  display: inline;
+  font-size: 125%;
+  font-weight: bold;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20px;
+  margin-left: -15px;
+  width: 30px;
+  position: absolute;
+}
+.step .step-ok{
+  display: none;
+}
+.step.done .step-ok, .step.active .step-ok{
+  display: inline;
+}
+.wz-body {
+  float: left;
+  margin-top: 10px;
+  width: 100%;
+}
+.wz-content {
+  padding: 15px 10px;
+  position: relative;
+}
+.btn-next{
+  position: absolute;
+  right: 30px;
+  top: 35px;
+}
+.btn-prev{
+  position: absolute;
+  right: 90px;
+  top: 35px;
+}
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+    text-decoration: none;
+}
+.line30 {
+  line-height: 30px;
+}
+
+.btn-white {
+  background: #fff;
+  color: #0586ca;
+}
+
+.btn-blue {
+  background: #0586ca;
+  color: #fff;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  padding: 10px 13px;
+}
+
+button:focus,
+.btn:focus {
+  outline:0 !important;
+  box-shadow:none !important;
+}

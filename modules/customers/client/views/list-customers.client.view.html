@@ -1,0 +1,29 @@
+<section>
+  <div class="page-header">
+    <h1>Customers</h1>
+  </div>
+  <div class="col-md-3">
+    <div class="list-group">
+      <div><input type="text" class="form-control" id="search" ng-model="searchText.name" value="" placeholder="Search..." /></div>
+      <br/>
+      <a ng-click="vm.loadview()" class="btn btn-default btn-block btn-lg">
+        <i class="glyphicon glyphicon-plus"></i> Add customer
+      </a>
+      <br/>
+      <a ng-repeat="customer in vm.customers | filter:searchText | orderBy:'name'"
+         ng-click="vm.loadview(customer)"
+         class="list-group-item">
+        <!-- <img src="http://lorempixel.com/128/128/people/" alt="" class="img-circle avatar-small"> -->
+        <span class="list-group-item-heading name-customer" ng-bind="customer.name"></span>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-9" data-ng-if="vm.customer != null">
+    <div class="col-md-6" ng-include="'/modules/customers/client/views/form-customer.client.view.html'"></div>
+    <div class="col-md-6" ng-if="vm.customer._id" ng-include="'/modules/customers/client/views/tab-customer.client.view.html'"></div>
+        <!-- Tab Customers -->
+  </div>
+<!--   <div class="alert alert-warning text-center" ng-if="vm.customers.$resolved && !vm.customers.length">
+    No Customers yet, why don't you <a ui-sref="customers.create">create one</a>?
+  </div> -->
+</section>

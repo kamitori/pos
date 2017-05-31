@@ -1,0 +1,110 @@
+<div class="fullbox">
+  <div ng-include="'/modules/core/client/views/header.client.view.html'" class=""></div>
+  <div class="setting_tab col-md-12 col-xs-12 col-sm-12" style="margin-bottom:20px">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+      <a ui-sref="settingsaccounts.list" data-target="settingsaccounts.list" data-toggle="tab">Account</a>
+    </li>
+    <li role="presentation">
+      <a ui-sref="staffs.list" data-target="staffs.list" data-toggle="tab">Staff</a>
+    </li>
+    <li role="presentation" >
+      <a data-toggle="tab" ui-sref="adminservices.list" data-target="#adminservices.list">Service</a>
+    </li>
+    <li role="presentation">
+      <a href="#settings" data-target="#settings" data-toggle="tab">Payment</a>
+    </li>
+    <li role="presentation" class="active">
+      <a data-toggle="tab">Notifications</a>
+    </li>
+  </ul>
+</div>
+<section class="col-md-12 col-sm-12 col-xs-12">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <h1><i class="glyphicon glyphicon-bell"> Notifications </i></h1>    
+  </div>  
+  <div class="list-group col-md-12 col-sm-12 col-xs-12 clearfix col-md-offset-1 col-sm-offset-1 col-xs-offset-1" ng-repeat="setup in vm.setups" style="clear:both">
+      <h3>Send receipt/return to customer's email for online orders <toggle class="toggle" ng-model="setup.is_send_email" id="is_send_email" ng-change="vm.updateStatus(setup._id,'is_send_email',1)" onstyle="btn-info"></toggle></h3>
+
+      <div class="list-group col-md-9 col-sm-9 col-xs-9 col-md-offset-2 col-sm-offset-1 col-xs-offset-1 clearfix nobox" style="clear:both;border:none !important">        
+        <div class="col-md-2 col-sm-5 col-xs-6">
+          SMTP Server Address:
+        </div>
+        <div class="col-md-8 col-sm-7 col-xs-6">
+          <input type="text" ng-model="setup.smtp_address" id="smtp_address" ng-change="vm.updateStatus(setup._id,'smtp_address')" class="form-control" />
+        </div>
+        <div class="col-md-12 cleafix"> &nbsp;</div>
+        <div class="col-md-2 col-sm-5 col-xs-6">
+          SMTP Port:
+        </div>
+        <div class="col-md-8 col-sm-7 col-xs-6">
+          <input type="text" ng-model="setup.smtp_port" id="smtp_port" ng-change="vm.updateStatus(setup._id,'smtp_port')" class="form-control">
+        </div>
+        <div class="col-md-12 cleafix"> &nbsp;</div>
+        <div class="col-md-2 col-sm-5 col-xs-6">
+          SMTP Username:
+        </div>
+        <div class="col-md-8 col-sm-7 col-xs-6">
+          <input type="text" ng-model="setup.smtp_username" id="smtp_username" ng-change="vm.updateStatus(setup._id,'smtp_username')" class="form-control" />
+        </div>
+        <div class="col-md-12 cleafix"> &nbsp;</div>
+        <div class="col-md-2 col-sm-5 col-xs-6">
+          SMTP Password:
+        </div>
+        <div class="col-md-8 col-sm-7 col-xs-6">
+          <input type="password" ng-model="setup.stmp_password" id="smtp_password" ng-change="vm.updateStatus(setup._id,'smtp_password')" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-2 col-sm-5 col-xs-6">
+        <h3>Email Signature</h3>
+      </div>
+      <div class="col-md-8 col-sm-7 col-xs-6">
+        <textarea class="form-control" ng-model="setup.email_signature" id="email_signature" ng-change="vm.updateStatus(setup._id,'email_signature')"></textarea>
+      </div>
+      <div class="col-md-12 cleafix"> &nbsp;</div>
+      <div class="col-md-12 col-sm-12 col-xs-12 cleafix">
+        <h3>Settings</h3>
+      </div>
+       <div class="list-group col-md-9 col-sm-9 col-xs-9 col-md-offset-2 col-sm-offset-1 col-xs-offset-1 clearfix nobox" style="clear:both;border:none !important">        
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="md-20" ng:click="vm.updateStatus(setup._id,'push_notification',1)">
+            <i ng-if="!setup.push_notification" id="push_notification" ng-model="setup.push_notification" class="glyphicon glyphicon-plus-sign "></i>  
+            <i ng-if="setup.push_notification" id="push_notification" ng-model="setup.push_notification" class="glyphicon glyphicon-minus-sign disabled"></i>
+          </span>
+          Push notification remind users for item pickup (1 hour before)
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="md-20" ng:click="vm.updateStatus(setup._id,'send_thank_you_email',1)">
+            <i ng-if="!setup.send_thank_you_email" id="send_thank_you_email" ng-model="setup.send_thank_you_email" class="glyphicon glyphicon-plus-sign "></i>  
+            <i ng-if="setup.send_thank_you_email" id="send_thank_you_email" ng-model="setup.send_thank_you_email" class="glyphicon glyphicon-minus-sign disabled"></i>
+          </span>
+          Send a "thank you" email to customers for submitting a review
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <span class="md-20" ng:click="vm.updateStatus(setup._id,'push_notification_reservation',1)">
+            <i ng-if="!setup.push_notification_reservation" id="push_notification_reservation" ng-model="setup.push_notification_reservation" class="glyphicon glyphicon-plus-sign "></i>  
+            <i ng-if="setup.push_notification_reservation" id="push_notification_reservation" ng-model="setup.push_notification_reservation" class="glyphicon glyphicon-minus-sign disabled"></i>
+          </span>
+          Push notification remind users for reservation time (1 hour before)
+        </div>
+      </div>
+  </div>  
+</section>
+</div>
+<style>
+.md-20 { font-size: 20px; cursor: pointer; }
+.disabled{
+  color:gray !important;
+}
+.list-group{
+  -webkit-box-shadow:none;
+}
+.clearfix {
+  clear:both;
+}
+textarea {
+  width: 92% !important;
+  height: 120px !important;
+}
+</style>

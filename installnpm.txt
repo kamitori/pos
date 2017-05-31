@@ -1,0 +1,2 @@
+npm install mkdirp;
+bower install angularjs-color-picker --save;

@@ -1,0 +1,20 @@
+<footer>
+	<span class="block">
+		<span>{{vm.order.total_items}}</span> Items in cart
+	</span>
+	<span class="block" ng-click="vm.viewCart()">
+		<i class="glyphicon glyphicon-shopping-cart"></i> <span class="viewcart active">View Cart</span>
+	</span>
+	<span class="block">
+		<button class="btn btn-round btn-white" ng-click="vm.clearCart()">Clear Cart</button>
+	</span>
+	<span class="block right pay" ng-click="">
+		Pay
+	</span>
+	<span class="block right placeorder" ng-click="">
+		Place order
+	</span>
+	<span class="block right total" ng-click="">
+		total: <span class="total_amount">${{vm.order.sum_amount.toFixed(2)}}</span>
+	</span>
+</footer>

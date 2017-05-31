@@ -1,0 +1,53 @@
+<section>
+  <div>
+    <h2>Wellcome to Booking System</h2>
+    <p>Booking System isn’t just your ordinary appointment scheduling software, it is home to a number of features that make scheduling a bliss rather than a chore.</p>
+    <p>Here are the highlights of the system.</p>
+    <ul>
+      <li>
+       Appointments
+      </li>
+      <li>
+        Integrations
+      </li>
+      <li>
+        Google Calendar Sync
+      </li>
+      <li>
+        Schedule Recurring Appointments
+      </li>
+      <li>
+        Website Widgets
+      </li>
+    </ul>
+  </div>
+  <div ng-controller="HeaderController as vm">
+    <h2>POWERFUL. FREE. SCHEDULING.</h2>
+    <p>Manage appointments, customers, staff, schedules and more -100% free & online!</p>
+    <p ng-hide="vm.authentication.user">
+      <a href="/authentication/signup" ui-sref="authentication.signup" class="bt blackbt">Create a Free Account</a>
+      <a href="/authentication/signin" ui-sref="authentication.signin" class="bt blackbt">Login</a>
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h2><strong>A</strong>ppointments</h2>
+      <p>Book, manage, analyze, access your appointments and do much more online in your booking Calendar. The cloud is the limit.</p>
+    </div>
+    <div class="col-md-3">
+      <h2><strong>I</strong>ntegrations</h2>
+      <p>Integrate Booking System with a host of other popular web Apps. We love to see your business grow and scale up exponentially.</p>
+    </div>
+    <div class="col-md-3">
+      <h2><strong>E</strong>mail Reminders</h2>
+      <p>Emails are all you need to stay on top of every booked appointments. What’s more, this feature comes absolutely free.</p>
+    </div>
+    <div class="col-md-3">
+      <h2><strong>S</strong>cheduling</h2>
+      <p>Schedule appointments with an intuitive calendar containing compelling features. Setmore makes scheduling simple.</p>
+    </div>
+  </div>
+  
+  <br>Enjoy &amp; Keep Us Updated,
+  <br>AnvyVn Team.
+</section>

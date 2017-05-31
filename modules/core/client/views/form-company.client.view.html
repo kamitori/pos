@@ -1,0 +1,43 @@
+<section>
+  <div class="text-center">
+   	Setup only takes a moment, you'll be booking appointments in no time.
+  </div>
+  <br/>
+  <div class="col-md-12">
+    <form name="vm.form.companyForm" class="form-horizontal" ng-submit="" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Your Business</label>
+          <div class="col-md-9">
+            <input name="name" type="text" ng-model="vm.company.name" id="name" class="form-control" placeholder="Business Name" required>
+          </div>
+          <div class="col-md-9 col-md-offset-3" ng-messages="vm.form.companyForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Business name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Industry</label>
+          <div class="col-md-9">
+            <select name="type" type="text" ng-model="vm.company.type" id="type" class="form-control" placeholder="Business Name" required  ng-options="type as type for type in vm.companyType">
+            </select>
+          </div>
+          <div class="col-md-9 col-md-offset-3" ng-messages="vm.form.companyForm.type.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Industry is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label col-md-3" for="name">Phone No</label>
+          <div class="col-md-9">
+            <input name="phone" type="text" ng-model="vm.company.phone" id="phone" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div class="col-md-9 col-md-offset-3" ng-messages="vm.form.companyForm.phone.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Phone Number is required.</p>
+          </div>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

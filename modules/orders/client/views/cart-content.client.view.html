@@ -1,0 +1,42 @@
+<table class="table table-stripped table-cart">
+  <tr ng-repeat="product in vm.order.products">
+    <td class="image">
+      <img src="http://jt.banhmisub.com{{product.image}}" alt="">
+    </td>
+    <td class="infor">
+      <h3>{{product.name}}</h3>
+      <small>Unit price: <b>${{product.sell_price}}</b><br/></small>
+      <span ng-class="product.note?'':'hidden'">Note: {{product.note}}<br/></span>
+      <span ng-repeat="des in product.op_description"><b>{{des}}</b><br/></span>
+    </td>
+    <td class="quantity">
+      <button class="btn down mainbt" ng-click="vm.downQuantity(product)">-</button>
+      <input class="popup_qty" type="number" onfocus="onFocusQuantity(this)" value="1" id="popup_qty_main" ng-model="product.quantity" max="99"/>
+      <button class="btn up mainbt" ng-click="vm.upQuantity(product)">+</button>
+    </td>
+    <td class="price">
+      ${{(product.sell_price * product.quantity).toFixed(2)}}
+    </td>
+    <td class="action">
+      <button class="btn btn-blue" ng-click="vm.editProduct(product)">Edit</button>
+      <button class="btn btn-danger" ng-click="vm.deleteProduct(product)">Delete</button>
+      <button class="btn btn-danger">Transfer</button>
+      <button class="btn btn-blue">Details</button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" class="total">Sub Total</td>
+    <td class="price">${{vm.order.sum_sub_total.toFixed(2)}}</td>
+    <td class="action">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="total">GST</td>
+    <td class="price">${{vm.order.sum_tax.toFixed(2)}}</td>
+    <td class="action">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="total">TOTAL</td>
+    <td class="price">${{vm.order.sum_amount.toFixed(2)}}</td>
+    <td class="action">&nbsp;</td>
+  </tr>
+</table>

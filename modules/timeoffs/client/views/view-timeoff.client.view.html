@@ -1,0 +1,26 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.timeoff.name"></h1>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.timeoff.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="timeoffs.edit({ timeoffId: vm.timeoff._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.timeoff.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.timeoff.user"
+            ng-bind="vm.timeoff.user.displayName"></span>
+      <span ng-if="!vm.timeoff.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.timeoff.content"></p>
+</section>

@@ -1,0 +1,42 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #DAA520">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Add More Staff</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-3 text-right col-xs-6 col-sm-6">
+          Name:
+        </div>
+        <div class="col-md-9 col-xs-6 col-sm-6">
+          <input type="text" class="form-control" placeholder="Staff name" id="staff_name" ng-modal="vm.staff_name"/>
+        </div>
+        <div style="clear:both">&nbsp;</div>
+        <div class="col-md-3 text-right col-xs-6 col-sm-6">
+          Email:
+        </div>
+        <div class="col-md-9 col-xs-6 col-sm-6">
+          <input type="text" class="form-control" placeholder="Email" id="staff_email" ng-modal="vm.staff_email"/>
+        </div>
+        <div style="clear:both">&nbsp;</div>
+        <div class="col-md-3 text-right col-xs-6 col-sm-6">
+          Password:
+        </div>
+        <div class="col-md-9 col-xs-6 col-sm-6">
+          <input type="password" class="form-control" placeholder="Password" id="staff_password" ng-modal="vm.password"/>          
+        </div>
+        <div class="col-md-3 text-right col-xs-6 col-sm-6">
+          <toggle class="toggle" ng-model="first_change" ng-change="vm.first_change_password()" onstyle="btn-info"></toggle>
+        </div>
+        <div class="col-md-9 col-xs-6 col-sm-6">
+          Required password change for 1st login
+        </div>
+      </div>
+      <div style="clear:both">&nbsp;</div>
+      <div class="modal-footer">
+        <button type="button" ng-click="quicksave()" class="btn btn-warning" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #0586ca">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Split/Change Bill</h4>
+      </div>
+      <div class="modal-body splitbill">
+        <div class="row">
+
+          <div class="col-md-12" style="font-weight: bold;">
+            SELECT SPLIT TYPE
+          </div>
+          <div class="col-md-12">
+            <div class="splitaction" ng-click="showSplitAction('show_seats')">Split by seats</div>
+            <div id="show_seats" style="padding-left: 50px; display: none;">
+              <div class="splitaction">
+                <input type="text" />
+                <button class="btn btn-primary" ng-click="split('seats')" data-dismiss="modal">Split</button>
+              </div>
+            </div>
+
+            <div class="splitaction" ng-click="showSplitAction('show_percentage')">Split by percentage</div>
+            <div id="show_percentage" style="padding-left: 50px; display: none;">
+              <div class="splitaction">
+                <input type="text" />
+                <button class="btn btn-primary" ng-click="split('percentage')" data-dismiss="modal">Split</button>
+                <!-- <a class="btn btn-warning" ui-sref="splitbills.split"><i class="glyphicon glyphicon-scissors"> Split </i></a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12" style="font-weight: bold; margin-top: 20px;">
+            TRANSFER BILL
+          </div>
+          <div class="col-md-12">
+            <div class="splitaction">Transfer dine in bill to takeaway</div>
+          </div>
+
+        </div>
+      </div>
+      <!-- <div style="clear:both">&nbsp;</div> -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

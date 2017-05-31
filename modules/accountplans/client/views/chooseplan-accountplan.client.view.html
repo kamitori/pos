@@ -1,0 +1,75 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #DAA520">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Choose plan</h4>
+      </div>
+      <div class="modal-body">
+          <div class="plan-body" id="paymentDetails">
+            <h3>Payment Details</h3>
+            <form name="credit_card_details" autocomplete="off">
+              <label for="card-name">Name on Card</label>
+              <input placeholder="Name" id="card_name" maxlength="100" tabindex="1">
+              <label for="card-name">Card Number</label>
+              <input name="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" id="card_number" maxlength="19" tabindex="2">
+              <label for="card-name">EXPIRES ON<span class="span-cvv">CVV</span></label>
+
+              <div class="dropdown-holder">
+                <div class="month-selectbox dropdown" tabindex="3">
+                  <select>
+                    <option id="01" value="01"> 01-January </option>
+                    <option id="02" value="02"> 02-February </option>
+                    <option id="03" value="03"> 03-March </option>
+                    <option id="04" value="04"> 04-April </option>
+                    <option id="05" value="05"> 05-May </option>
+                    <option id="06" value="06"> 06-June </option>
+                    <option id="07" value="07"> 07-July </option>
+                    <option id="08" value="08"> 08-August </option>
+                    <option id="09" value="09"> 09-September </option>
+                    <option id="10" value="10"> 10-October </option>
+                    <option id="11" value="11"> 11-November </option>
+                    <option id="12" value="12"> 12-December </option>
+                  </select>
+                </div>
+                <div class="year-selectbox dropdown" tabindex="4">
+                  <select>
+                    <option value="2017" id="17">2017</option><option value="2018" id="18">2018</option><option value="2019" id="19">2019</option><option value="2020" id="20">2020</option><option value="2021" id="21">2021</option><option value="2022" id="22">2022</option><option value="2023" id="23">2023</option><option value="2024" id="24">2024</option><option value="2025" id="25">2025</option><option value="2026" id="26">2026</option><option value="2027" id="27">2027</option><option value="2028" id="28">2028</option><option value="2029" id="29">2029</option><option value="2030" id="30">2030</option><option value="2031" id="31">2031</option><option value="2032" id="32">2032</option><option value="2033" id="33">2033</option><option value="2034" id="34">2034</option><option value="2035" id="35">2035</option><option value="2036" id="36">2036</option><option value="2037" id="37">2037</option>
+                  </select>
+                </div>
+                <input id="card_cvv_new" maxlength="3" type="password" placeholder="xxx" tabindex="5">
+              </div>
+              
+                <div id="plans-type-holder">
+                  <label for="card-name">Your Plan</label>
+                  <div class="plans-selectbox dropdown" tabindex="6">
+                      <select>
+                        <option class="monthlyPlan-option" id="premiumPlan_v3" value="30"> PREMIUM - $25/month </option>
+                        <option class="yearlyPlan-li" id="premiumPlan_v4_yearly" value="365"> PREMIUM - $17/month (Billed $199 annually) </option>
+                      </select>
+                      
+                  </div>
+                </div>
+              
+
+              <div id="premium_v3_capcha_new"></div>
+
+              <footer class="pricingPlanFooter">
+                <button id="confirmPayment" tabindex="6" class="button button-large button-green makePayment">Confirm Payment</button>
+                <button class="button button-trans" tabindex="7">Cancel</button>
+                
+                
+                <p>You will be billed $25 (USD) when you click Upgrade. Your subscription will be renewed automatically and you will be charged $25 (USD) each month until you cancel or downgrade the current plan.</p>
+                
+              </footer>
+            </form>
+
+          </div>        
+      </div>
+      <!-- <div style="clear:both">&nbsp;</div>
+      <div class="modal-footer">
+        <button type="button" ng-click="quicksave()" class="btn btn-warning" data-dismiss="modal">Submit</button>
+      </div> -->
+    </div>
+  </div>
+</div>

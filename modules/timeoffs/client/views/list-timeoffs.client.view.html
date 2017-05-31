@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Timeoffs</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="timeoff in vm.timeoffs"
+       ui-sref="timeoffs.view({ timeoffId: timeoff._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="timeoff.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="timeoff.user" ng-bind="timeoff.user.displayName"></span>
+        <span ng-if="!timeoff.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="timeoff.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.timeoffs.$resolved && !vm.timeoffs.length">
+    No Timeoffs yet, why don't you <a ui-sref="timeoffs.create">create one</a>?
+  </div>
+</section>

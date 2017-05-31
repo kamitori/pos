@@ -1,0 +1,79 @@
+<div class="modal fade" id="modalAppointment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header" style="background-color: #DAA520">
+        <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:white;font-weight: bolder">Create Appointment</h4>
+      </div>
+      <div class="modal-body">
+            <form name="vm.form.appointmentForm" class="form-horizontal" ng-submit="vm.save(vm.form.appointmentForm.$valid)" novalidate>
+              <fieldset>
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="service">Service</label>
+                  <div class="col-md-10">
+                    <select class="form-control" ng-change="vm.changeService()" ng-options="service.name for service in vm.listService track by service._id" ng-model="vm.appointment.service" name="service" id="service">
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="staff">Staff</label>
+                  <div class="col-md-10">
+                    <select class="form-control" ng-change="vm.changestaff()" ng-options="staff.name for staff in vm.listStaff track by staff._id" ng-model="vm.appointment.staff" name="staff" id="staff">
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-5 col-md-offset-2">
+                    <input type="text" class="form-control" value="$ {{vm.appointment.sprice}}" name="sprice" ng-bind="vm.appointment.sprice" disabled="">
+                  </div>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" value="{{vm.appointment.sduration}} m" name="sduration" ng-bind="vm.appointment.sduration" disabled="">
+                  </div>
+                  <!-- <div ng-messages="vm.form.appointmentForm.service.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Appointment name is required.</p>
+                  </div> -->
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-2" for="service">Day/Time</label>
+                  <div class="col-md-5">
+                    <p class="input-group">
+                      <input type="text" class="form-control" uib-datepicker-popup="{{vm.formatDate}}" ng-model="vm.appointment.datetime" is-open="vm.openDate" datepicker-options="{dateDisabled: vm.disabled, formatYear: 'yy', maxDate: vm.maxDate, minDate: vm.minDate}" close-text="Close"/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openDate = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="col-md-5">
+                    <select class="form-control" ng-options="item as item._val for item in vm.draw_list_working_hours track by item._id" ng-selected="vm.appointment.time" ng-model="vm.appointment.time" ng-change="vm.applyTime()">
+                    </select>
+                  </div>
+                  <!-- <div ng-messages="vm.form.appointmentForm.service.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Appointment name is required.</p>
+                  </div> -->
+                </div>
+
+                <div class="form-group" show-errors>
+                  <label class="control-label col-md-2" for="note">Note</label>
+                  <div class="col-md-10">
+                    <textarea name="note" id="note" class="form-control" ng-model="vm.appointment.note" placeholder="Notes for the Customer" style="resize: none;"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-warning">Save Appointment</button>
+                </div>
+                <div ng-show="vm.error" class="text-danger">
+                  <strong ng-bind="vm.error"></strong>
+                </div>
+              </fieldset>
+            </form>
+      </div>
+      <!-- <div style="clear:both">&nbsp;</div> -->
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>

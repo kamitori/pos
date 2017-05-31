@@ -1,0 +1,50 @@
+<section>
+<!--   <div class="page-header">
+    <h1>Calendars</h1>
+  </div> -->
+  <div class="text-center">
+    <span class="select-staff">
+      <img src="/themes/admin/images/user-avatar50x50.png" width="40">
+      <select class="form-control" ng-change="vm.changeStaff()" ng-options="staff.name for staff in vm.listStaff track by staff._id" ng-model="vm.currentStaff" width="200">
+      </select>
+    </span>
+    <button class="btn btn-warning" ng-click="vm.addService()"><i class="glyphicon glyphicon-plus"></i> Service</button>
+    <button class="btn btn-warning" ng-click="vm.addStaff()"><i class="glyphicon glyphicon-plus"></i> Staff</button>
+    <button class="btn btn-warning" ng-click="vm.addCustomer()">
+      <i class="glyphicon glyphicon-plus"></i> Customer
+    </button>
+  </div>
+  <br/>
+  <div id="calendar" class="calendar" ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+</section>
+
+<style type="text/css" media="screen">
+  .fc-today{
+    /*background-color: #fff !important;*/
+  }
+  .fc-activeday{
+    background-color: #fff;
+  }
+  .fc-bg,.fc-disable{
+    /*background-image: url('https://i.stack.imgur.com/GIHQn.jpg');*/
+  }
+  .fc-axis{
+    font-weight: bold;
+    background-color: #fff;
+    opacity: 1;
+  }
+  .select-staff{
+    display: inline-block;
+    float: left;
+    position: absolute;
+    left: 85px;
+    width: 250px;
+  }
+  .select-staff img{
+    display: inline-block;
+  }
+  .select-staff select{
+    display: inline-block;
+    width: 75%;
+  }
+</style>

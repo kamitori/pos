@@ -1,0 +1,36 @@
+<uib-tabset active="activeJustified" justified="true">
+  <uib-tab index="0" heading="Appointment">
+    <table class="table table-stripped">
+      <tr>
+        <td>
+          <a ng-click="vm.addAppointment()">
+            <button class="btn btn-warning">
+              <i class="glyphicon glyphicon-plus"></i>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <b>More Appointment</b>
+          </a>
+        </td>
+      </tr>
+      <tr ng-repeat="appointment in vm.listAppointment" ng-click="vm.updateAppointment(appointment._id)">
+        <td>
+          <div class="pull-left" style="margin-right: 10px;">
+            <div class="btn btn-primary">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </div>
+          </div>
+          <div class="pull-left">
+            <b>{{ appointment.datetime.toLocaleString() }}</b><br/>
+            {{appointment.staffname}} - {{appointment.servicename}} - {{appointment.sduration}}m - {{appointment.sprice}}$
+          </div>
+        </td>
+      </tr>
+    </table>
+  </uib-tab>
+  <uib-tab index="1" heading="Notes">
+    
+  </uib-tab>
+  <uib-tab index="2" heading="Stats">
+    
+  </uib-tab>    
+</uib-tabset>

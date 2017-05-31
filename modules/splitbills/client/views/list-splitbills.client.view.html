@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Splitbills</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="splitbill in vm.splitbills"
+       ui-sref="splitbills.view({ splitbillId: splitbill._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="splitbill.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="splitbill.user" ng-bind="splitbill.user.displayName"></span>
+        <span ng-if="!splitbill.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="splitbill.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.splitbills.$resolved && !vm.splitbills.length">
+    No Splitbills yet, why don't you <a ui-sref="splitbills.create">create one</a>?
+  </div>
+</section>
